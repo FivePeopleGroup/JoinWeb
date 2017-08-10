@@ -10,8 +10,6 @@ import java.security.Timestamp;
 import java.util.Date;
 
 /**
- * hhhihh
- * hhhhh
  * Created by wangh on 2017/8/6.
  */
 @Table(name = "t_news")
