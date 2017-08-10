@@ -23,7 +23,7 @@ public class Department extends AbstractEntity {
     @Column(name = "department_name")
     public String departmentName;
 
-    //部门介绍
+    //部门简介
     @Column(name = "department_description")
     public String departmentDescription;
 
