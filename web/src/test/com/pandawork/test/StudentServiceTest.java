@@ -1,9 +1,5 @@
-import com.pandawork.common.entity.News;
-import com.pandawork.common.entity.Section;
 import com.pandawork.common.entity.Student;
 import com.pandawork.core.common.exception.SSException;
-import com.pandawork.service.NewsService;
-import com.pandawork.service.SectionService;
 import com.pandawork.service.StudentService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
