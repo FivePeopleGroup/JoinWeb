@@ -1,0 +1,49 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.UserMapper">
+
+   <!--增加用户-->
+    <insert id="addUser">
+        INSERT INTO `t_user`
+         (`id`, `username`, `password`, `status`)
+        VALUES (#{user.id}, #{user.username},
+        #{user.password}, #{user.status})
+    </insert>
+
+  <!--删除用户-->
+    <delete id="deleteUser">
+        DELETE FROM `t_user`
+        WHERE `id` = #{id}
+    </delete>
+
+    <!--修改用户-->
+    <update id="updateUser">
+        UPDATE `t_user`
+        SET `username` = #{user.username},
+        `password` = #{user.password},
+        `status` = #{user.status}
+        WHERE `id` = #{user.id}
+    </update>
+
+    <!--列出全部用户-->
+    <select id="listAll" resultMap="pw.User">
+        SELECT *
+        FROM `t_user`
+    </select>
+
+    <!--根据id查找-->
+    <select id="queryUserById" resultMap="pw.User" >
+        SELECT *
+        FROM `t_user`
+        WHERE `id` = #{id}
+    </select>
+
+   <!--根据姓名查找用户-->
+    <select id="queryUserByName" resultMap="pw.User">
+        SELECT *
+        FROM `t_user`
+        WHERE `username`= #{username}
+    </select>
+
+</mapper>
