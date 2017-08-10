@@ -19,6 +19,7 @@ import java.util.List;
 import static com.pandawork.core.common.util.Assert.*;
 
 /**
+ * 12
  * Created by wangh on 2017/8/6.
  */
 @Service("newsService")
