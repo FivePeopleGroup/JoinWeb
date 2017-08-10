@@ -1,4 +1,4 @@
-﻿package com.pandawork.common.entity;
+﻿﻿package com.pandawork.common.entity;
 
 import com.pandawork.core.common.entity.AbstractEntity;
 
@@ -10,7 +10,7 @@ import java.security.Timestamp;
 import java.util.Date;
 
 /**
- * 哈哈哈哈
+ * cf
  * Created by wangh on 2017/8/6.
  */
 @Table(name = "t_news")
