@@ -19,7 +19,7 @@ import java.util.List;
 import static com.pandawork.core.common.util.Assert.*;
 
 /**
- * aaaaa
+ * 马玲宝宝最可爱！！！
  * Created by wangh on 2017/8/6.
  */
 @Service("newsService")
