@@ -17,12 +17,14 @@
         DELETE FROM `t_news`
         WHERE `id` = #{id}
     </delete>
+
+
     <!--更新新闻-->
     <update id="updateNews">
         UPDATE `t_news`
         SET `title` = #{news.title},
         `content` = #{news.content}
-        WHERE `id` = #{id}
+        WHERE `id` = #{news.id}
     </update>
 
     <!--根据id查找新闻-->
