@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * 哈哈
+ * 哈哈哈哈哈
  * Created by wangh on 2017/8/6.
  */
 public interface NewsMapper {
