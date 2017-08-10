@@ -27,14 +27,31 @@ public enum  NFException implements IBizExceptionMes {
     UpdateStudentFailed("更新学生信息失败",10014),
     UpdateStudentByIdFailed("按照id查询学生信息失败",10016),
     QueryByNameFailed("按照姓名查询学生信息失败",10017 ),
-
     queryStudentByIdFailed("", 10017),
+<<<<<<< HEAD
     ListALLMemberFailed("查询全部成员失败",40001),
     AddMemberFailed("增加成员失败",40002),
     DeleteMemberFailed("删除成员失败",40003),
     UpdateMemberFailed("修改成员信息失败",40004),
     QueryMemberByIdFailed("通过id查找成员失败",40005),
     DeleteMemberByDepartmentIdFailed("通过部门id删除成员失败",400006)
+=======
+    AddUser("增加用户失败",20001),
+    DeleteUser("删除用户失败",20002),
+    UpdateUser("更新用户失败",20003),
+    QueryUserById("跟据id查找新闻失败",20004),
+    QueryUserByName("根据姓名查找id失败",20005),
+    ListAllUser("列出全部用户失败",20006),
+
+    NewsNameNotNull("获取新闻标题为空",50005 ),
+    dateNotNull( "获取发布时间为空",50007),
+    ContentNotNull("获取新闻内容为空",50010),
+    DelNewsNull("删除新闻失败",50013),
+    UpdateNewsFailed("更新新闻失败",50014),
+    QueryByIdFailed("按照id查询新闻失败",50017 ),
+    queryNewsByKeyWordFailed("根据关键字查询新闻失败", 50018),
+    ListNewsAll("获取新闻列表失败",50003),
+>>>>>>> origin/master
 
     ;
 

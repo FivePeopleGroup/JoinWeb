@@ -30,7 +30,7 @@ public interface NewsMapper {
      * @return 返回
      * @throws Exception 异常
      */
-    public boolean delectNews(@Param("id")int id) throws Exception;
+    public boolean deleteNews(@Param("id")int id) throws Exception;
 
 
     /**

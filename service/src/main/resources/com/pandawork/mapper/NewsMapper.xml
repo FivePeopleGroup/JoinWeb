@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.NewsMapper">
+
+    <!--添加新闻-->
+    <insert id="addNews">
+        INSERT INTO `t_news`
+        (`id`, `title`, `date`, `content`)
+        VALUES (#{news.id}, #{news.title},
+        #{news.date}, #{news.content})
+    </insert>
+
+    <!--删除新闻-->
+    <delete id="deleteNews">
+        DELETE FROM `t_news`
+        WHERE `id` = #{id}
+    </delete>
+    <!--更新新闻-->
+    <update id="updateNews">
+        UPDATE `t_news`
+        SET `title` = #{news.title},
+        `content` = #{news.content}
+        WHERE `id` = #{id}
+    </update>
+
+    <!--根据id查找新闻-->
+    <select id="queryById" resultMap="pw.News" >
+        SELECT *
+        FROM `t_news`
+        WHERE `id` = #{id}
+    </select>
+
+    <!--根据关键字查询新闻列表-->
+    <select id="queryByKeyWord" resultMap="pw.News">
+        SELECT *
+        FROM `t_news`
+        WHERE `title` LIKE CONCAT ('%',#{keyWord},'%')
+    </select>
+
+    <!--新闻表-->
+    <select id="listAll" resultMap="pw.News">
+        SELECT *
+        FROM `t_news`
+    </select>
+
+</mapper>
