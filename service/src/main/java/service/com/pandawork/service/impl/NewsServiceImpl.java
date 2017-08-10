@@ -17,6 +17,9 @@ import java.util.List;
 
 /**
  * 新闻管理系统
+ * (增加新闻,删除新闻,更新新闻内容,
+ * 根据id查询新闻内容,根据关键字查询新闻列表,
+ * 新闻列表)
  * NewsServiceImpl层
  * Created by 侯淑婷 on 2017/8/10.
  */
