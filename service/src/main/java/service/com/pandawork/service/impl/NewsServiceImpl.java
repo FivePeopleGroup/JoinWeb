@@ -23,7 +23,7 @@ import java.util.List;
  * NewsServiceImpl层
  * Created by 侯淑婷 on 2017/8/10.
  */
-@Service("NewsService")
+@Service("newsService")
 public class NewsServiceImpl implements NewsService{
 
     @Autowired
@@ -41,7 +41,6 @@ public class NewsServiceImpl implements NewsService{
             return;
         }
         Assert.isNotNull(news.getTitle(), NFException.NewsNameNotNull);
-        Assert.isNotNull(news.getDate(), NFException.dateNotNull);
         Assert.isNotNull(news.getContent(), NFException.ContentNotNull);
         try{
             newsMapper.addNews(news);
