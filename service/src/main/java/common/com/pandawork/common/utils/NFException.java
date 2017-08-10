@@ -29,6 +29,12 @@ public enum  NFException implements IBizExceptionMes {
     QueryByNameFailed("按照姓名查询学生信息失败",10017 ),
 
     queryStudentByIdFailed("", 10017),
+    ListALLMemberFailed("查询全部成员失败",40001),
+    AddMemberFailed("增加成员失败",40002),
+    DeleteMemberFailed("删除成员失败",40003),
+    UpdateMemberFailed("修改成员信息失败",40004),
+    QueryMemberByIdFailed("通过id查找成员失败",40005),
+    DeleteMemberByDepartmentIdFailed("通过部门id删除成员失败",400006)
 
     ;
 

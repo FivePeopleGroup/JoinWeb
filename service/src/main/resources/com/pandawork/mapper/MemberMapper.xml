@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.MemberMapper">
+
+    <select id="queryMemberById" resultMap="pw.Member" >
+        SELECT *
+        FROM `t_member`
+        WHERE `id` = #{id}
+    </select>
+
+    <insert id="addMember">
+        INSERT INTO `t_member`
+        (`id`, `member_name`, `sex`, `introduce`,
+        `department_id`)
+        VALUES (#{member.id}, #{member.memberName},
+        #{member.sex}, #{member.introduce},
+        #{member.departmentId})
+    </insert>
+
+    <update id="updateMember">
+        UPDATE `t_member`
+        SET `member_name` = #{member.memberName},
+            `sex` = #{member.sex},
+            `introduce` = #{member.introduce},
+            `department_id` = #{member.departmentId}
+        WHERE `id` = #{member.id}
+    </update>
+
+    <delete id="deleteMember">
+        DELETE FROM `t_member`
+        WHERE `id` = #{id}
+    </delete>
+
+    <delete id="deleteMemberByDepartmentId">
+        DELETE FROM `t_member`
+        WHERE `department_id` = #{departmentId}
+    </delete>
+
+    <select id="listAll" resultMap="pw.Member">
+        SELECT *
+        FROM `t_member`
+    </select>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.pandawork.mapper;
 
+import com.pandawork.common.entity.Member;
 import com.pandawork.common.entity.News;
 import org.apache.ibatis.annotations.Param;
 
@@ -64,4 +65,6 @@ public interface NewsMapper {
      * @throws Exception 异常
      */
     public List<News> listAll() throws Exception;
+
+
 }
