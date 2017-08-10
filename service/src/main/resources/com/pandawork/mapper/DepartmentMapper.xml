@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.DepartmentMapper">
+
+    <select id="listAll" resultMap="pw.Department">
+        SELECT *
+        FROM `t_department`
+    </select>
+
+    <insert id="addDepartment">
+        INSERT INTO
+        `t_department`(`department_name`,`department_description`)
+        VALUES
+        (#{department.departmentName},#{department.departmentDescription})
+    </insert>
+
+    <delete id="deleteDepartment">
+        Delete FROM `t_department`
+        WHERE `id` = #{id}
+    </delete>
+
+    <update id="updateDepartment">
+        UPDATE `t_department`
+        Set `department_name` = #{department.departmentName},
+        `department_description` = #{department.departmentDescription}
+        WHERE `id` = #{department.id}
+    </update>
+
+    <select id="queryDepartmentById" resultMap = "pw.Department">
+        SELECT *
+        FROM `t_department`
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="queryDepartmentByDepartmentId" resultMap="pw.Department">
+        SELECT *
+        FROM `t_member` LEFT JOIN `t_department`
+        ON `t_department`.`id` = `t_member`.`department_id`
+    </select>
+
+</mapper>

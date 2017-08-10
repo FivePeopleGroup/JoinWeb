@@ -30,6 +30,12 @@ public enum  NFException implements IBizExceptionMes {
 
     queryStudentByIdFailed("", 10017),
 
+    ListAllDepartment("获取部门列表失败",30001),
+    AddDepartment("增加部门失败",30002),
+    DeleteDepartment("删除部门失败",30003),
+    UpdateDepartment("更新部门失败",30004),
+    QueryDepartmentById("根据id查找部门失败",30005),
+    QueryDepartmentByName("根据部门名查找部门失败",30006)
     ;
 
     private String msg;
