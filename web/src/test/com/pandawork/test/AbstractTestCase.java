@@ -1,3 +1,5 @@
+package com.pandawork.test;
+
 import com.pandawork.core.framework.bean.StaticAutoWire;
 import junit.framework.TestCase;
 import org.junit.runner.RunWith;
