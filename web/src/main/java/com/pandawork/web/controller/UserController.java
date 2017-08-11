@@ -26,7 +26,7 @@ public class UserController extends AbstractController {
 
     /**
      * 跳到登陆页面
-     *
+     *q
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -268,7 +268,7 @@ public class UserController extends AbstractController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
+    @RequestMapping(value = "/qq/{user}" ,method = RequestMethod. GET)
     public String qq(@PathVariable("user")User user,Model model) {
       try{
           List<News> list = newsService.listAll();
