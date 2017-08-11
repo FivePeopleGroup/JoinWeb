@@ -48,7 +48,6 @@
             </c:if>
         </c:forEach>
     </table>
-    <%--<th><a href="${website}news/新闻首页">返回主页</a></th>--%>
-</center>
+    <th><a href="${website}news/新闻主页main">返回主页</a></th>
 </body>
 </html>
