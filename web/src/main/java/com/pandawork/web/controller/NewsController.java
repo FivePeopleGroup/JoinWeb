@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
+import java.util.jar.Attributes;
 
 /**
  * Created by 侯淑婷 on 2017/8/11.
@@ -112,7 +113,7 @@ public class NewsController extends AbstractController{
             if(news.getContent().equals("")||news.getTitle().equals("")){
                 redirectAttributes.addAttribute("message","修改的标题或内容不能为空，请重新修改！");
                 return "redirect:/news/to_edit/" + id;
-            }
+            }//使用RedirectAttributes
             news.setId(id);
             newsService.updateNews(news);
             model.addAttribute("news",news);
