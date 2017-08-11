@@ -3,6 +3,7 @@ package com.pandawork.web.controller;
 import com.pandawork.common.entity.News;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.core.common.log.LogClerk;
+import com.pandawork.core.common.util.Assert;
 import com.pandawork.web.spring.AbstractController;
 
 
@@ -39,8 +40,12 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String addNews(News news){
+    public String addNews(News news,Model model){
         try{
+            if(Assert.isNull(news)){
+                model.addAttribute("message","输入不能为空，请重新填写！");
+                return "add_news";
+            }
             newsService.addNews(news);
             return "redirect:/news/list";
         }catch (SSException e){
@@ -98,6 +103,10 @@ public class NewsController extends AbstractController{
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
     public String updateNews(News news,@PathVariable("id")int id,Model model){
         try{
+            if(!Assert.isNotNull(news)){
+                model.addAttribute("massage","修改的内容不能为空，请重新修改！");
+                return "edit_news";
+            }
             news.setId(id);
             newsService.updateNews(news);
             model.addAttribute("news",news);
@@ -138,8 +147,16 @@ public class NewsController extends AbstractController{
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public String queryByKeyWord(@RequestParam String keyWord, Model model){
         try{
+            if(Assert.isNull(keyWord)){
+                model.addAttribute("message","搜索栏无内容，请重新填写！");
+                return "redirect:/news/list";
+            }
             List<News> newsList = Collections.emptyList();
             newsList = newsService.queryByKeyWord(keyWord);
+            if(Assert.isEmpty(newsList)){
+                model.addAttribute("message","没有搜索到相关新闻！");
+                return "redirect:/news/list";
+            }
             model.addAttribute("newsList",newsList);
             return "search_news";
         }catch (SSException e){
@@ -160,7 +177,7 @@ public class NewsController extends AbstractController{
             List<News> newsList = Collections.emptyList();
             newsList = newsService.listAll();
             model.addAttribute("newsList",newsList);
-            return "home";
+            return "main";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());

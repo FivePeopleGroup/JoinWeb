@@ -15,6 +15,7 @@
 <body>
 <form action="/news/edit/${news.id}" method="POST">
 <div>
+    <h3 align="center">${message}</h3>
     <table>
         <tr>
             <td>新闻标题:</td>
@@ -27,7 +28,6 @@
         <tr>
             <td colspan="2"><input type="submit" value="确定修改"></td>
         </tr>
-
     </table>
 </div>
 </form>

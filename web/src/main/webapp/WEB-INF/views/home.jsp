@@ -38,14 +38,14 @@
         <c:forEach items="${newsList}"  var="news" varStatus="status">
             <tr >
                 <td>${status.index+1}</td>
-                <td><a href="${website}news/内容显示/${news.id}">${news.title}</a>
+                <td><a href="${website}news/select/${news.id}">${news.title}</a>
                 </td>
                 <td>${news.date}</td>
             </tr>
         </c:forEach>
     </table>
-    <th><a href="${website}user/用户注册/">我要注册</a></th>
-    <th><a href="${website}user/用户登录/">我要登录</a></th>
+    <%--<th><a href="${website}user/用户注册/">我要注册</a></th>--%>
+    <%--<th><a href="${website}user/用户登录/">我要登录</a></th>--%>
 </center>
 </body>
 </html>

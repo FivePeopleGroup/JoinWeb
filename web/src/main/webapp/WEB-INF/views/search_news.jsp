@@ -13,19 +13,22 @@
     <title>搜索结果</title>
 </head>
 <body>
-<table border="1">
-    <tr>
+<table border="1" cellspacing="0" align="center">
+    <tr align="center">
         <th>新闻编号</th>
         <th>新闻标题</th>
         <th>发布时间</th>
     </tr>
     <c:forEach items="${newsList}"  var="news" varStatus="status">
-        <tr>
+        <tr align="center">
             <td>${status.index+1}</td>
             <td><a href="${website}news/select/${news.id}">${news.title}</a></td>
             <td>${news.date}</td>
         </tr>
     </c:forEach>
+    <tr align="center">
+        <td colspan="3" align="center"><a href="/news/list">返回首页</a></td>
+    </tr>
 </table>
 </body>
 </html>
