@@ -11,6 +11,8 @@
     <title>普通用户修改信息</title>
 </head>
 <body>
+<center>
+    <form  action="${website}user/修改/${userList.id}">
 <table border="1">
     <tr>
     <td>用户名:</td>
@@ -19,14 +21,23 @@
     </td>
     </tr>
     <tr>
-        <td>密码:</td>
+        <td>原密码:</td>
+        <td>${user.password}</td>
+    </tr>
+    <tr>
+        <td>新密码:</td>
         <td>
-            <input type="text" name="password" value="${user.password}">
+            <input type="password" name="password">
         </td>
     </tr>
 
     <tr>
-        <td colspan="2" align="center"><a href="${website}user/修改/${userList.id}">提交</a>
+        <td colspan="2" align="center">
+            <input type="submit" name="submit" value="提交">
+        </td>
     </tr>
+    </table>
+    </form>
+</center>
 </body>
 </html>
