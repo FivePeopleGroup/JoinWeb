@@ -135,7 +135,7 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/search",method = RequestMethod.GET)
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
     public String queryByKeyWord(@RequestParam String keyWord, Model model){
         try{
             List<News> newsList = Collections.emptyList();
