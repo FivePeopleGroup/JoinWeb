@@ -12,7 +12,7 @@
 </head>
 <body>
 <center>
-    <form  action="${website}user/修改/${userList.id}">
+    <form  action="${website}user/修改/${userList.id}" method="post">
 <table border="1">
     <tr>
     <td>用户名:</td>
