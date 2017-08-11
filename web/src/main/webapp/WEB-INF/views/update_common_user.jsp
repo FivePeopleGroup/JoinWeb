@@ -21,18 +21,20 @@
     </td>
     </tr>
     <tr>
-        <td>原密码:</td>
-        <td>${user.password}</td>
+        <td>新密码:</td>
+        <td>
+            <input type="password" name="password">
+        </td>
     </tr>
     <tr>
-        <td>新密码:</td>
+        <td>确认密码:</td>
         <td>
             <input type="password" name="password">
         </td>
     </tr>
 
     <tr>
-        <td colspan="2" align="center">
+        <td>
             <input type="submit" name="submit" value="提交">
         </td>
     </tr>

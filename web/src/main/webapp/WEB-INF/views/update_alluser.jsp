@@ -18,11 +18,15 @@
         <table border="1">
             <tr>
                 <td>用户名:</td>
-                <td>${user.username}</td>
+                <td>
+                    <input type="text" name="username" value="${user.username}" readonly>
+                </td>
             </tr>
             <tr>
                 <td>密码:</td>
-                <td>${user.password}</td>
+                <td>
+                    <input type="text" name="password" value="${user.password}" readonly>
+                </td>
             </tr>
             <tr>
                 <td>用户身份：</td>
