@@ -2,10 +2,7 @@ package com.pandawork.common.entity;
 
 import com.pandawork.core.common.entity.AbstractEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Claus on 2017/8/10.
@@ -27,6 +24,9 @@ public class Department extends AbstractEntity {
     @Column(name = "department_description")
     public String departmentDescription;
 
+//    //联表名
+//    @Transient
+//    private String memberName;
 
     public Integer getId() {
         return id;
@@ -53,6 +53,13 @@ public class Department extends AbstractEntity {
         this.departmentDescription = departmentDescription;
     }
 
+//    public String getMemberName() {
+//        return memberName;
+//    }
+//
+//    public void setMemberName(String memberName) {
+//        this.memberName = memberName;
+//    }
 
     @Override
     public String toString() {
@@ -60,6 +67,7 @@ public class Department extends AbstractEntity {
                 "id=" + id +
                 ", departmentName='" + departmentName + '\'' +
                 ", departmentDescription='" + departmentDescription + '\'' +
+//                ", memberName='" + memberName + '\'' +
                 '}';
     }
 }

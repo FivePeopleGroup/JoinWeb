@@ -37,7 +37,7 @@
     <select id="queryDepartmentByDepartmentId" resultMap="pw.Department">
         SELECT *
         FROM `t_member` LEFT JOIN `t_department`
-        ON `t_department`.`id` = `t_member`.`department_id`
+        ON `t_member`.`department_id` = `t_department`.`id`
     </select>
 
 </mapper>

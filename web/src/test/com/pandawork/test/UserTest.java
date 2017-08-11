@@ -1,3 +1,4 @@
+package com.pandawork.test;
 import com.pandawork.common.entity.User;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.UserService;
