@@ -242,7 +242,12 @@ public class UserController extends AbstractController {
     }
 
 
-
+    /**
+     * 超级管理员修改用户信息
+     * @param Status
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "/ManagerDoUpdate"  ,method = RequestMethod.POST)
     public String doUpdate(@RequestParam("userStatus") int Status ,User user){
         try{
@@ -257,9 +262,9 @@ public class UserController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
-    public String qq(){
-        int status = 2;
-        return "redirect:/user/administration/"+status;
-    }
+//    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
+//    public String qq(){
+//        int status = 2;
+//        return "redirect:/user/administration/"+status;
+//    }
 }
