@@ -24,7 +24,7 @@ public class Department extends AbstractEntity {
     @Column(name = "department_description")
     public String departmentDescription;
 
-//    //联表名
+//    //联表字段名
 //    @Transient
 //    private String memberName;
 
