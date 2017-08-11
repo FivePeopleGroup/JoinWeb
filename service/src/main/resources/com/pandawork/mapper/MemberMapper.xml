@@ -5,9 +5,9 @@
 <mapper namespace="com.pandawork.mapper.MemberMapper">
 
     <select id="queryMemberById" resultMap="pw.Member" >
-        SELECT *
-        FROM `t_member`
-        WHERE `id` = #{id}
+        SELECT t_member.*,t_department.department_name AS theDepartmentName
+        FROM `t_member`,`t_department` WHERE t_member.department_id = t_department.id
+        AND t_member.id = #{id}
     </select>
 
     <select id="queryMemberByDepartmentId" resultMap="pw.Member" >

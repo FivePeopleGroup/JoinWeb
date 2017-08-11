@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
@@ -73,13 +74,13 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.GET)
     public String editNews(@PathVariable("id") int id,Model model){
         try{
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
-            return "edit";
+            return "edit_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -100,7 +101,7 @@ public class NewsController extends AbstractController{
             news.setId(id);
             newsService.updateNews(news);
             model.addAttribute("news",news);
-            return "select_news";
+            return "redirect:/news/list";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -114,13 +115,13 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/select/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/select/{id}",method = RequestMethod.GET)
     public String selectNews(@PathVariable("id")int id,Model model){
         try{
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
-            return "select";
+            return "select_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -134,8 +135,8 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/search",method = RequestMethod.GET)
-    public String queryByKeyWord(@Param("keyWord") String keyWord, Model model){
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public String queryByKeyWord(@RequestParam String keyWord, Model model){
         try{
             List<News> newsList = Collections.emptyList();
             newsList = newsService.queryByKeyWord(keyWord);

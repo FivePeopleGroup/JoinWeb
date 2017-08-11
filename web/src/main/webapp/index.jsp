@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect("/news/首页");
+    response.sendRedirect("/news/list");
 %>
 </body>
 </html>

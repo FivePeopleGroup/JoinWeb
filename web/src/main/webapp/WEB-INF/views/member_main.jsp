@@ -32,17 +32,19 @@
                 <td>${status.index+1}</td>
                 <td>${member.memberName}</td>
                 <td>${member.sex}</td>
-                <td>联表查询</td>
+                <td>${member.theDepartmentName}</td>
                 <td><textarea>${member.introduce}</textarea></td>
                 <c:if test="${userstatus == '2'}">
-                <td><a href="${website}member/删除/${member.id}">删除</a>
-                <td><a href="${website}member/修改/${member.id}">修改</a>
+                <td><a href="${website}member/delete/${member.id}/${userstatus}">删除</a>
+                <td><a href="${website}member/update/${member.id}/${userstatus}">修改</a>
                 </c:if>
             </tr>
         </c:forEach>
     </table>
-    <c:if test=""
-    <th><a href="${website}news/新闻主页main">返回主页</a></th>
+<c:if test="${userstatus == '2'}">
+    <a href="${website}member/toAdd/${userstatus}">添加</a>
+</c:if>
+    <%--<th><a href="${website}news/新闻首页">返回主页</a></th>--%>
 </center>
 </body>
 </html>

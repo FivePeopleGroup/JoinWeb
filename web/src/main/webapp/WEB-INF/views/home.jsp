@@ -16,8 +16,10 @@
     <h2>卓音主页</h2>
     <table>
         <tr>
-            <td><a href="${website}/department/部门介绍"></a>部门介绍</td>
-            <td><a href="${website}/member/成员介绍"></a>成员介绍</td>
+            <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
+
+            <td><a href="${website}/department/部门介绍/${user.status}">部门介绍</a></td>
+            <td><a href="${website}/member/list/${user.status}">成员介绍</a></td>
         </tr>
     </table>
                 <%--新闻模糊查询--%>
@@ -34,29 +36,13 @@
             <th>发布时间</th>
         </tr>
         <c:forEach items="${newsList}"  var="news" varStatus="status">
-            <tr>
+            <tr >
                 <td>${status.index+1}</td>
-                <td><a href="${website}news/select/${news.id}">${news.title}</a>
+                <td><a href="${website}news/内容显示/${news.id}">${news.title}</a>
                 </td>
                 <td>${news.date}</td>
-<<<<<<< Updated upstream
             </tr>
         </c:forEach>
-=======
-                <c:if test="${user.status == '1'|| user.status == '2'}">
-                <td><a href="${website}news/delete/${news.id}">删除</a>
-                </td>
-                <td><a href="${website}news/to_edit/${news.id}">修改</a>
-                </td>
-                </c:if>
-            </tr>
-        </c:forEach>
-        <c:if test="${user.status == '1'||user.status == '2'}">
-        <tr bgcolor="#e0ffff">
-            <td colspan="5" align="right"><a href="${website}news/to_add">添加</a></td>
-        </tr>
-        </c:if>
->>>>>>> Stashed changes
     </table>
     <th><a href="${website}user/register/">我要注册</a></th>
     <th><a href="${website}user/login/">我要登录</a></th>
