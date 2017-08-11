@@ -55,4 +55,12 @@ public interface MemberService {
      */
     public List<Member> listAll( ) throws Exception;
 
+    /**
+     * 通过部门id查找成员
+     * @return
+     * @throws Exception
+     */
+    public List<Member> queryMemberByDepartmentId(int departmentId) throws Exception;
+
+
 }

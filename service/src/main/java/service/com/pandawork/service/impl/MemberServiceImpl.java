@@ -116,5 +116,20 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
+    @Override
+    public List<Member> queryMemberByDepartmentId(int departmentId) throws SSException {
+        if (Assert.lessOrEqualZero(departmentId)) {
+            return null;
+        }
+        try {
+            return memberMapper.queryMemberByDepartmentId(departmentId);
+        } catch (Exception e) {
+            LogClerk.errLog.error(e);
+            throw SSException.get(NFException.QueryMemberByIdFailed, e);
+        }
+
+    }
+
+
 
 }
