@@ -49,7 +49,7 @@
             <c:if test="${user.status == '1'|| user.status == '2'}">
                 <td><a href="${website}news/delete/${news.id}">删除</a>
                 </td>
-                <td><a href="${website}news/edit/${news.id}">修改</a>
+                <td><a href="${website}news/to_edit/${news.id}">修改</a>
                 </td>
             </c:if>
         </tr>

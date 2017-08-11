@@ -43,7 +43,7 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(Model model, @RequestParam("username") String username, @RequestParam("password") String password, RedirectAttributes redirectAttributes) throws SSException {
+    public String doLogin(Model model,@RequestParam("username") String username, @RequestParam("password") String password, RedirectAttributes redirectAttributes) throws SSException {
 
         if (Assert.isNull(username)) {
             redirectAttributes.addFlashAttribute("message", "用户名为空，请重新登录！！！");
@@ -55,10 +55,7 @@ public class UserController extends AbstractController {
                 redirectAttributes.addFlashAttribute("message", "用户名不存在，请重新登录！！！");
                 return "redirect:/user/login";
             } else if (password.equals(user.getPassword())) {
-                List<News> list = newsService.listAll();
-                model.addAttribute("list",list);
-                model.addAttribute("user", user);
-                return "main";
+                return "redirect:/user/qq/"+user;
             } else {
                 redirectAttributes.addFlashAttribute("message", "密码错误，请重新登录！！！");
                 return "redirect:/user/login";
@@ -265,9 +262,23 @@ public class UserController extends AbstractController {
     }
 
 
-//    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
-//    public String qq(){
-//        int status = 2;
-//        return "redirect:/user/administration/"+status;
-//    }
+    /**
+     * 跳转到主页
+     * @param user
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
+    public String qq(@PathVariable("user")User user,Model model) {
+      try{
+          List<News> list = newsService.listAll();
+          model.addAttribute("user", user);
+          model.addAttribute("list",list);
+          return "main";
+      } catch (SSException e) {
+          LogClerk.errLog.error(e);
+          sendErrMsg(e.getMessage());
+          return ADMIN_SYS_ERR_PAGE;
+      }
+    }
 }
