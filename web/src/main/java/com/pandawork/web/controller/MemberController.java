@@ -48,8 +48,12 @@ public class MemberController extends AbstractController {
      * @return
      */
     @RequestMapping(value ="/add/{userstatus}", method = RequestMethod.POST)
-    public String insertNews(@PathVariable("userstatus") int userstatus, Member member, RedirectAttributes redirectAttributes) {
+    public String insertNews(@PathVariable("userstatus") int userstatus, Member member, Model model) {
         try {
+            if(member.getMemberName().equals("")||member.getSex().equals("")||member.getDepartmentId().equals("")||member.getIntroduce().equals("")){
+                model.addAttribute("msg","请填入完整信息！");
+                return "add_member";
+            }
             memberService.addMember(member);
             return "redirect:/member/list/" + userstatus;
         } catch (SSException e){
@@ -62,27 +66,6 @@ public class MemberController extends AbstractController {
         }
     }
 
-//
-//    /**
-//     * 删除新闻
-//     * @param id
-//     * @param sectionId
-//     * @return
-//     */
-//    @RequestMapping(value = "delete/{id}/{sectionId}", method = RequestMethod.GET)
-//    public String deleteNewsById(@PathVariable("id") int id,@PathVariable("sectionId") int sectionId) {
-//        try {
-//            newsService.deleteNewsById(id);
-//            return "redirect:/news/selectBySectionId/" + sectionId;//删除后还需重定向页面才可获取最新列表
-//        } catch (SSException e) {
-//            LogClerk.errLog.error(e);
-//            sendErrMsg(e.getMessage());
-//            return ADMIN_SYS_ERR_PAGE;
-//        }
-//    }
-//
-//
-//
     /**
      * 删除成员
      * @param id
