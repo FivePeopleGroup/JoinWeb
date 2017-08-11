@@ -37,7 +37,7 @@
                 </tr>
         </c:forEach>
     </table>
-    <%--<th><a href="${website}news/新闻首页">返回主页</a></th>--%>
+    <th><a href="${website}news/新闻主页main">返回主页</a></th>
 </center>
 </body>
 </html>
