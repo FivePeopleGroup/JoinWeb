@@ -107,4 +107,18 @@ public class DepartmentServiceImpl implements DepartmentService{
         }
         return departmentList;
     }
+
+//    @Override
+//    @Transactional(propagation = Propagation.REQUIRED,rollbackFor = {SSException.class,Exception.class})
+//    public Department queryDescriptionByName(String departmentName) throws SSException{
+//        if (Assert.isNull(departmentName)){
+//            return null;
+//        }
+//        try{
+//            return departmentMapper.queryDescriptionByName(departmentName);
+//        }catch(Exception e){
+//            LogClerk.errLog.error(e);
+//            throw SSException.get(NFException.QueryDepartmentByName,e);
+//        }
+//    }
 }

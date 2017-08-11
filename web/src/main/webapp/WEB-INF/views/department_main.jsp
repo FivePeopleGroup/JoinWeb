@@ -28,11 +28,12 @@
         <c:forEach items="${departmentList}"  var="department" varStatus="status">
                 <tr bgcolor="#e0ffff">
                     <td>${status.index+1}</td>
-                    <td><a href="${website}department/部门内容显示/">${department.departmentName}</a></td>
+                    <td><a href="${website}department/queryDepartmentById/${department.id}">${department.departmentName}</a></td>
                     <td><textarea>${department.departmentDescription}</textarea></td>
                     <c:if test="${userstatus == '2'}">
-                    <td><a href="${website}department/删除/${department.id}">删除</a>
-                    <td><a href="${website}department/修改/${department.id}">修改</a>
+                    <td><a href="${website}department/toAddDepartment/">增加</a></td>
+                    <td><a href="${website}department/deleteDepartment/${department.id}">删除</a></td>
+                    <td><a href="${website}department/toUpdateDepartment/${department.id}">修改</a></td>
                     </c:if>
                 </tr>
         </c:forEach>

@@ -40,4 +40,9 @@
         ON `t_member`.`department_id` = `t_department`.`id`
     </select>
 
+    <!--<select id="queryDescriptionByName" resultMap="pw.Department">-->
+        <!--SELECT `department_description`-->
+        <!--FROM `t_department`-->
+        <!--WHERE `department_name` = #{departmentName}-->
+    <!--</select>-->
 </mapper>

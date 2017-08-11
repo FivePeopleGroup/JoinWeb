@@ -54,4 +54,6 @@ public interface DepartmentService {
      * @throws SSException
      */
     public List<Department> queryDepartmentByDepartmentId(int id) throws SSException;
+
+//    public Department queryDescriptionByName(String DepartmentName) throws SSException;
 }

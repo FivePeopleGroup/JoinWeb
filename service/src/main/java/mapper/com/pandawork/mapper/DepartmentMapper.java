@@ -55,4 +55,6 @@ public interface DepartmentMapper {
      * @throws SSException
      */
     public List<Department> queryDepartmentByDepartmentId(@Param("id") int id) throws Exception;
+
+    public Department queryDescriptionByName(@Param("departmentName") String departmentName) throws Exception;
 }
