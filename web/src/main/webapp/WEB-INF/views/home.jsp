@@ -42,8 +42,8 @@
             </tr>
         </c:forEach>
     </table>
-    <th><a href="${website}user/用户注册/">我要注册</a></th>
-    <th><a href="${website}user/用户登录/">我要登录</a></th>
+    <th><a href="${website}user/register/">我要注册</a></th>
+    <th><a href="${website}user/login/">我要登录</a></th>
 </center>
 </body>
 </html>

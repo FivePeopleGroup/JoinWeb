@@ -7,6 +7,7 @@ import com.pandawork.core.common.util.Assert;
 import com.pandawork.web.spring.AbstractController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -116,4 +117,12 @@ public class UserController extends AbstractController {
         }
 
     }
+
+
+    @RequestMapping(value = "/update/{id}" ,method = RequestMethod.GET)
+    public String update(@PathVariable("id") int id){
+        return "update_common_user";
+    }
+
+
 }

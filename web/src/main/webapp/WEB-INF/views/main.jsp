@@ -58,7 +58,7 @@
         </tr>
     </c:if>
 </table>
-<th><a href="${website}user/修改个人信息/${user.id}">修改个人信息</a></th>
+<th><a href="${website}user/update/${user.id}">修改个人信息</a></th>
 </center>
 </body>
 </html>
