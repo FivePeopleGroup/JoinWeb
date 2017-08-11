@@ -42,7 +42,7 @@
         </c:forEach>
     </table>
 <c:if test="${userstatus == '2'}">
-    <a href="${website}member/add/${userstatus}">添加</a>
+    <a href="${website}member/toAdd/${userstatus}">添加</a>
 </c:if>
     <%--<th><a href="${website}news/新闻首页">返回主页</a></th>--%>
 </center>

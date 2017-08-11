@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,10 +32,12 @@ public class MemberController extends AbstractController {
      * @return
      * @throws SSException
      */
-    @RequestMapping(value = "/add/{userstatus}", method = RequestMethod.GET)
-    public String toInsertNews(@PathVariable("userstatus") int userstatus, Model model) throws SSException {
+    @RequestMapping(value = "/toAdd/{userstatus}", method = RequestMethod.GET)
+    public String toInsertNews(@PathVariable("userstatus") int userstatus, Model model, HttpServletRequest request) throws SSException {
+        String msg = request.getParameter("msg");
         List<Department> list = Collections.emptyList();
         list = departmentService.listAll();
+        model.addAttribute("msg",msg);
         model.addAttribute("list",list);
         model.addAttribute("userstatus",userstatus);
         return "add_member";
@@ -48,14 +51,14 @@ public class MemberController extends AbstractController {
      * @return
      */
     @RequestMapping(value ="/add/{userstatus}", method = RequestMethod.POST)
-    public String insertNews(@PathVariable("userstatus") int userstatus, Member member, Model model) {
+    public String insertNews(@PathVariable("userstatus") int userstatus, Member member, RedirectAttributes redirectAttributes) {
         try {
-            if(member.getMemberName().equals("")||member.getSex().equals("")||member.getDepartmentId().equals("")||member.getIntroduce().equals("")){
-                model.addAttribute("msg","请填入完整信息！");
-                return "add_member";
-            }
+            if(Assert.isNull(member.getMemberName())||Assert.isNull(member.getSex())||Assert.isNull(member.getDepartmentId())||Assert.isNull(member.getIntroduce())){
+                redirectAttributes.addAttribute("msg","请填入完整信息！");
+                return "redirect:/member/toAdd/" + userstatus;
+            }else {
             memberService.addMember(member);
-            return "redirect:/member/list/" + userstatus;
+            return "redirect:/member/list/" + userstatus;}
         } catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
