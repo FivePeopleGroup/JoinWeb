@@ -23,6 +23,7 @@
         </tr>
     </table>
                 <%--新闻模糊查询--%>
+                <p>${message}</p>
                 <form action="${website}/news/search" method="post">
                     <input type="text" name="keyWord"/>
                     <input type="submit" name="submit" value="搜索新闻"/>
@@ -44,8 +45,8 @@
             </tr>
         </c:forEach>
     </table>
-    <%--<th><a href="${website}user/用户注册/">我要注册</a></th>--%>
-    <%--<th><a href="${website}user/用户登录/">我要登录</a></th>--%>
+    <th><a href="${website}user/用户注册/">我要注册</a></th>
+    <th><a href="${website}user/用户登录/">我要登录</a></th>
 </center>
 </body>
 </html>

@@ -15,8 +15,8 @@
 <body>
 <form action="/news/edit/${news.id}" method="POST">
 <div>
-    <h3 align="center">${message}</h3>
     <table>
+        <caption>${message}</caption>
         <tr>
             <td>新闻标题:</td>
             <td><input type="text" value="${news.title}" name="title"></td>

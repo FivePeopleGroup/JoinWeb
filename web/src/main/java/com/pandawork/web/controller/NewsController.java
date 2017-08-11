@@ -6,15 +6,15 @@ import com.pandawork.core.common.log.LogClerk;
 import com.pandawork.core.common.util.Assert;
 import com.pandawork.web.spring.AbstractController;
 
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,8 +30,10 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/to_add",method = RequestMethod.GET)
-    public String toAddNews(){
-            return "add_news";
+    public String toAddNews(HttpServletRequest request,Model model){
+        String message = request.getParameter("message");
+        model.addAttribute("message",message);
+        return "add_news";
     }
 
     /**
@@ -40,14 +42,16 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String addNews(News news,Model model){
+    public String addNews(News news,Model model,RedirectAttributes redirectAttributes){
         try{
-            if(Assert.isNull(news)){
-                model.addAttribute("message","输入不能为空，请重新填写！");
-                return "add_news";
+            if(news.getTitle().equals("")||news.getContent().equals("")){
+                redirectAttributes.addAttribute("message","输入的标题或内容不能为空，请重新填写！");
+                return "redirect:/news/to_add";
             }
-            newsService.addNews(news);
-            return "redirect:/news/list";
+            else{
+                newsService.addNews(news);
+                return "redirect:/news/list";
+            }
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -80,11 +84,13 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.GET)
-    public String editNews(@PathVariable("id") int id,Model model){
+    public String editNews(@PathVariable("id") int id, Model model, HttpServletRequest request){
         try{
+            String message = request.getParameter("message");
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
+            model.addAttribute("message",message);
             return "edit_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -101,11 +107,11 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
-    public String updateNews(News news,@PathVariable("id")int id,Model model){
+    public String updateNews(News news, @PathVariable("id")int id, Model model, RedirectAttributes redirectAttributes){
         try{
-            if(!Assert.isNotNull(news)){
-                model.addAttribute("massage","修改的内容不能为空，请重新修改！");
-                return "edit_news";
+            if(news.getContent().equals("")||news.getTitle().equals("")){
+                redirectAttributes.addAttribute("message","修改的标题或内容不能为空，请重新修改！");
+                return "redirect:/news/to_edit/" + id;
             }
             news.setId(id);
             newsService.updateNews(news);
