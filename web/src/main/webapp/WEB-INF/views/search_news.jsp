@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <title>搜索结果</title>
@@ -24,14 +25,14 @@
         <c:forEach items="newsList" var="news" varStatus="status">
             <tr>
                 <td>${status.index + 1}</td>
-                <td><a href="/news/select/${news.id}">${news.title}</a></td>
+                <td><a href="${website}news/select/${news.id}">${news.title}</a></td>
                 <td>${news.date}</td>
-                <td><a href="/news/to_edit/${news.id}">修改</a></td>
-                <td><a href="/news/delete/${news.id}">删除</a></td>
+                <td><a href="${website}news/to_edit/${news.id}">修改</a></td>
+                <td><a href="${website}news/delete/${news.id}">删除</a></td>
             </tr>
         </c:forEach>
         <tr>
-            <td colspan="2"><input type="submit" value="返回新闻首页"></td>
+            <td colspan="5"><input type="submit" value="返回新闻首页"></td>
         </tr>
     </table>
 </form>
