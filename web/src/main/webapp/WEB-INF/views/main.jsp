@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 芋头
@@ -11,20 +12,21 @@
     <title>登录后的主页</title>
 </head>
 <body>
+<center>
 <h2>卓音主页</h2>
 <table>
     <tr>
         <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
         <c:if test="${user.status == '1' || user.status == '2'}">
-            <td><a href="${website}/user/用户管理/{user.status}"></a>用户管理</td>
+            <td><a href="${website}/user/administration/${user.status}">用户管理</a></td>
         </c:if>
-        <td><a href="${website}/department/部门介绍/{user.status}"></a>部门介绍</td>
-        <td><a href="${website}/member/成员介绍/{user.status}"></a>成员介绍</td>
+        <td><a href="${website}/department/部门介绍/${user.status}">部门介绍</a></td>
+        <td><a href="${website}/member/list/${user.status}">成员介绍</a></td>
     </tr>
 </table>
 <%--新闻模糊查询--%>
-<form action="${website}/news/??" method="post">
-    <input type="text" name="keyword"/>
+<form action="${website}/news/search" method="post">
+    <input type="text" name="keyWord"/>
     <input type="submit" name="submit" value="搜索新闻"/>
 </form>
 
@@ -38,27 +40,27 @@
             <th colspan="2">操作</th>
         </c:if>
     </tr>
-    <c:forEach items="${newsList}"  var="news" varStatus="status">
+    <c:forEach items="${list}"  var="news" varStatus="status">
         <tr>
             <td>${status.index+1}</td>
-            <td><a href="${website}news/内容显示/${news.id}">${news.title}</a>
+            <td><a href="${website}news/select/${news.id}">${news.title}</a>
             </td>
             <td>${news.date}</td>
             <c:if test="${user.status == '1'|| user.status == '2'}">
-                <td><a href="${website}news/删除/${news.id}">删除</a>
+                <td><a href="${website}news/delete/${news.id}">删除</a>
                 </td>
-                <td><a href="${website}news/修改/${news.id}">修改</a>
+                <td><a href="${website}news/edit/${news.id}">修改</a>
                 </td>
             </c:if>
         </tr>
     </c:forEach>
     <c:if test="${user.status == '1'||user.status == '2'}">
         <tr>
-            <td colspan="5" align="right"><a href="${website}news/增加">添加</a></td>
+            <td colspan="5" align="right"><a href="${website}news/to_add">添加</a></td>
         </tr>
     </c:if>
 </table>
-<th><a href="${website}user/修改个人信息/${user.id}">修改个人信息</a></th>
+<th><a href="${website}user/update/${user.id}">修改个人信息</a></th>
 </center>
 </body>
 </html>

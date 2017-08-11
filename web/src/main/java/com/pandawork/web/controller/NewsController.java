@@ -3,18 +3,21 @@ package com.pandawork.web.controller;
 import com.pandawork.common.entity.News;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.core.common.log.LogClerk;
+import com.pandawork.core.common.util.Assert;
 import com.pandawork.web.spring.AbstractController;
 
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
+import java.util.jar.Attributes;
 
 /**
  * Created by 侯淑婷 on 2017/8/11.
@@ -28,8 +31,10 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/to_add",method = RequestMethod.GET)
-    public String toAddNews(){
-            return "add_news";
+    public String toAddNews(HttpServletRequest request,Model model){
+        String message = request.getParameter("message");
+        model.addAttribute("message",message);
+        return "add_news";
     }
 
     /**
@@ -38,10 +43,16 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String addNews(News news){
+    public String addNews(News news,Model model,RedirectAttributes redirectAttributes){
         try{
-            newsService.addNews(news);
-            return "redirect:/news/list";
+            if(news.getTitle().equals("")||news.getContent().equals("")){
+                redirectAttributes.addAttribute("message","输入的标题或内容不能为空，请重新填写！");
+                return "redirect:/news/to_add";
+            }
+            else{
+                newsService.addNews(news);
+                return "redirect:/news/list";
+            }
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -73,13 +84,15 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.POST)
-    public String editNews(@PathVariable("id") int id,Model model){
+    @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.GET)
+    public String editNews(@PathVariable("id") int id, Model model, HttpServletRequest request){
         try{
+            String message = request.getParameter("message");
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
-            return "edit";
+            model.addAttribute("message",message);
+            return "edit_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -95,12 +108,16 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
-    public String updateNews(News news,@PathVariable("id")int id,Model model){
+    public String updateNews(News news, @PathVariable("id")int id, Model model, RedirectAttributes redirectAttributes){
         try{
+            if(news.getContent().equals("")||news.getTitle().equals("")){
+                redirectAttributes.addAttribute("message","修改的标题或内容不能为空，请重新修改！");
+                return "redirect:/news/to_edit/" + id;
+            }//使用RedirectAttributes
             news.setId(id);
             newsService.updateNews(news);
             model.addAttribute("news",news);
-            return "select_news";
+            return "redirect:/news/list";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -114,13 +131,13 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/select/{id}",method = RequestMethod.POST)
+    @RequestMapping(value = "/select/{id}",method = RequestMethod.GET)
     public String selectNews(@PathVariable("id")int id,Model model){
         try{
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
-            return "select";
+            return "select_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -134,11 +151,19 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/search",method = RequestMethod.GET)
-    public String queryByKeyWord(@Param("keyWord") String keyWord, Model model){
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
+    public String queryByKeyWord(@RequestParam String keyWord, Model model){
         try{
+            if(Assert.isNull(keyWord)){
+                model.addAttribute("message","搜索栏无内容，请重新填写！");
+                return "redirect:/news/list";
+            }
             List<News> newsList = Collections.emptyList();
             newsList = newsService.queryByKeyWord(keyWord);
+            if(Assert.isEmpty(newsList)){
+                model.addAttribute("message","没有搜索到相关新闻！");
+                return "redirect:/news/list";
+            }
             model.addAttribute("newsList",newsList);
             return "search_news";
         }catch (SSException e){
@@ -159,7 +184,7 @@ public class NewsController extends AbstractController{
             List<News> newsList = Collections.emptyList();
             newsList = newsService.listAll();
             model.addAttribute("newsList",newsList);
-            return "home";
+            return "main";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());

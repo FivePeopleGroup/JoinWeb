@@ -5,6 +5,7 @@ package com.pandawork.test; /**
 import com.pandawork.common.entity.Member;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.MemberService;
+import com.pandawork.test.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,10 +30,10 @@ public class MemberServiceTest extends AbstractTestCase {
     @Test
     public void testAddMember() throws Exception {
         Member member = new Member();
-        member.setMemberName("小lll");
-        member.setSex("女");
-        member.setIntroduce("aaa");
-        member.setDepartmentId(1);
+        member.setMemberName("谦谦");
+        member.setSex("男");
+        member.setIntroduce("神经病啊");
+        member.setDepartmentId(2);
         memberService.addMember(member);
         System.out.println("添加成功");
     }
@@ -68,7 +69,7 @@ public class MemberServiceTest extends AbstractTestCase {
     @Test
     public void testQueryMemberById() throws Exception {
         Member member = new Member();
-        System.out.println(memberService.queryMemberById(2));
+        System.out.println(memberService.queryMemberById(4));
     }
 
     //根据部门id删除成员

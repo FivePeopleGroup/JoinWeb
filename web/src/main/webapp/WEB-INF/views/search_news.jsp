@@ -7,33 +7,28 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
     <title>搜索结果</title>
 </head>
 <body>
-<form action="/news/list" method="get">
-    <table cellspacing="0" border="1">
-        <tr>
-            <td>新闻条目：</td>
-            <td>新闻标题：</td>
-            <td>发布时间：</td>
-            <td>修改</td>
-            <td>删除</td>
+<table border="1" cellspacing="0" align="center">
+    <tr align="center">
+        <th>新闻编号</th>
+        <th>新闻标题</th>
+        <th>发布时间</th>
+    </tr>
+    <c:forEach items="${newsList}"  var="news" varStatus="status">
+        <tr align="center">
+            <td>${status.index+1}</td>
+            <td><a href="${website}news/select/${news.id}">${news.title}</a></td>
+            <td>${news.date}</td>
         </tr>
-        <c:forEach items="newsList" var="news" varStatus="status">
-            <tr>
-                <td>${status.index + 1}</td>
-                <td><a href="/news/select/${news.id}">${news.title}</a></td>
-                <td>${news.date}</td>
-                <td><a href="/news/to_edit/${news.id}">修改</a></td>
-                <td><a href="/news/delete/${news.id}">删除</a></td>
-            </tr>
-        </c:forEach>
-        <tr>
-            <td colspan="2"><input type="submit" value="返回新闻首页"></td>
-        </tr>
-    </table>
-</form>
+    </c:forEach>
+    <tr align="center">
+        <td colspan="3" align="center"><a href="/news/list">返回首页</a></td>
+    </tr>
+</table>
 </body>
 </html>

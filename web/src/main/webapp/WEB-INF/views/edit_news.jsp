@@ -6,14 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>新闻修改页面</title>
 </head>
 <body>
-<form action="/news/edit/${news.id}" method="post">
+<form action="/news/edit/${news.id}" method="POST">
 <div>
     <table>
+        <caption>${message}</caption>
         <tr>
             <td>新闻标题:</td>
             <td><input type="text" value="${news.title}" name="title"></td>
@@ -25,7 +28,6 @@
         <tr>
             <td colspan="2"><input type="submit" value="确定修改"></td>
         </tr>
-
     </table>
 </div>
 </form>
