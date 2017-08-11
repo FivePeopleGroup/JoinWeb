@@ -19,13 +19,11 @@
             <th>部门名称</th>
             <th>部门简介</th>
         </tr>
-        <c:forEach items="${department}"  var="department" varStatus="status">
-            <tr>
-                <td>${Status.index+1}</td>
-                <td>${department.departmentName}</td>
-                <td>${department.departmentDescription}</td>
-            </tr>
-        </c:forEach>
+        <tr>
+            <td>${Status.index+1}</td>
+            <td>${department.departmentName}</td>
+            <td>${department.departmentDescription}</td>
+        </tr>
     </table>
 </center>
 </body>
