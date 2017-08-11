@@ -47,6 +47,9 @@
   </table>
     ${message}
 </form>
+
+    <th><a href="${website}user/update/${7}">修改个人信息</a></th>
+
 </center>
 </body>
 </html>

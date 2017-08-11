@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 芋头
@@ -16,7 +17,7 @@
     <tr>
         <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
         <c:if test="${user.status == '1' || user.status == '2'}">
-            <td><a href="${website}/user/用户管理/{user.status}"></a>用户管理</td>
+            <td><a href="${website}/user/administration/{user.status}"></a>用户管理</td>
         </c:if>
         <td><a href="${website}/department/部门介绍/{user.status}"></a>部门介绍</td>
         <td><a href="${website}/member/成员介绍/{user.status}"></a>成员介绍</td>

@@ -14,8 +14,13 @@
 </head>
 <body>
 <center>
-    <form  action="${website}user/管理员修改/${userList.id}" method="post">
+    <form  action="${website}user/ManagerDoUpdate" method="post">
         <table border="1">
+            <tr hidden >
+                <td>
+                <input type="hidden" name="id" value="${user.id}">
+                </td>
+            </tr>
             <tr>
                 <td>用户名:</td>
                 <td>
@@ -30,8 +35,9 @@
             </tr>
             <tr>
                 <td>用户身份：</td>
-                <select name="status">
+
                 <td>
+                    <select name="status">
                     <c:if test="${user.status == '0'}">
                     <option selected='selected' value="0"/>普通用户</option>
                     <option value="1">管理员</option>
@@ -40,15 +46,21 @@
                         <option selected='selected' value="1"/>管理员</option>
                         <option value="0">普通用户</option>
                     </c:if>
+                    </select>
                 </td>
-                </select>
-            </tr>
 
+            </tr>
+            <tr hidden>
+                <td colspan="2">
+                    <input type="hidden" value="${userStatus}" name="userStatus">
+                </td>
+            </tr>
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" name="submit" value="提交">
                 </td>
             </tr>
+
         </table>
     </form>
 </center>

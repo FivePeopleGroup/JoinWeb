@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 /**
  * newframework
  * Created by TestUser on 2017/8/10.
@@ -119,10 +121,145 @@ public class UserController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/update/{id}" ,method = RequestMethod.GET)
-    public String update(@PathVariable("id") int id){
-        return "update_common_user";
+    /**
+     * 普通用户
+     * 根据id查找用户，跳转到修改信息界面
+     * @param id
+     * @return
+     * @throws SSException
+     */
+    @RequestMapping(value = "/update/{id}" ,method = RequestMethod.POST)
+    public String update(@PathVariable("id") int id ,Model model)  {
+       try{
+           User user = userService.queryUserById(id);
+           model.addAttribute("user",user);
+           return "update_common_user";
+       } catch (SSException e) {
+           LogClerk.errLog.error(e);
+           sendErrMsg(e.getMessage());
+           return ADMIN_SYS_ERR_PAGE;
+       }
     }
 
 
+    /**
+     * 处理修改信息页面
+     * @param user
+     * @param redirectAttributes
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "doUpdate" ,method = RequestMethod.POST)
+    public String doUpdate( User user, @RequestParam("password2") String password2,RedirectAttributes redirectAttributes ,Model model){
+        if (Assert.isNull(user.getPassword())||Assert.isNull(password2)) {
+            redirectAttributes.addFlashAttribute("message", "密码为空，请重新修改！！！");
+            return "redirect:/user/update/"+user.getId();
+        }
+        try {
+            User user1 = userService.queryUserByName(user.getUsername());
+            if (user.getPassword().equals(password2)) {
+                userService.updateUser(user);
+                redirectAttributes.addFlashAttribute("message", "密码修改成功，请重新登录！！！");
+                model.addAttribute("user",user);
+                return "redirect:/user/login";
+            }
+         else {
+                redirectAttributes.addFlashAttribute("message", "两次密码输入不一致，请重新修改！！！");
+                return "redirect:/user/update/"+user.getId();
+
+            }
+        } catch (SSException e) {
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
+    /**
+     *管理员和超级管理员管理用户
+     * 返回全部用户和登录者的等级
+     * @param status
+     * @param model
+     * @return
+     */
+
+    @RequestMapping(value = "/administration/{status}" ,method = RequestMethod.GET)
+    public String administration(@PathVariable("status") int status ,Model model ) {
+     try{
+         List<User> userList = userService.listAll();
+         model.addAttribute("userList" ,userList);
+         model.addAttribute("userStatus",status);
+         return "user_main";
+     } catch (SSException e) {
+         LogClerk.errLog.error(e);
+         sendErrMsg(e.getMessage());
+         return ADMIN_SYS_ERR_PAGE;
+     }
+
+    }
+
+
+    /**
+     * 删除用户，返回用户列表
+     * @param id
+     * @param Status
+     * @param redirectAttributes
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}/{userStatus}" ,method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id , @PathVariable("userStatus") int Status ,RedirectAttributes redirectAttributes ){
+        try{
+            userService.deleteUser(id);
+            redirectAttributes.addAttribute("Status" ,Status);
+            return "redirect:/user/administration/"+Status;
+        } catch (SSException e) {
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
+    /**
+     * 超级管理员修改用户信息
+     * @param id
+     * @param userStatus
+     * @param redirectAttributes
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/update/{id}/{userStatus}",method = RequestMethod.GET)
+      public String update(@PathVariable("id") int id ,@PathVariable("userStatus") int userStatus ,RedirectAttributes redirectAttributes ,Model model){
+       try{
+           User user = userService.queryUserById(id);
+           model.addAttribute("user",user);
+           redirectAttributes.addAttribute("userStatus" ,userStatus);
+           return "update_alluser";
+       } catch (SSException e) {
+           LogClerk.errLog.error(e);
+           sendErrMsg(e.getMessage());
+           return ADMIN_SYS_ERR_PAGE;
+       }
+    }
+
+
+
+    @RequestMapping(value = "/ManagerDoUpdate"  ,method = RequestMethod.POST)
+    public String doUpdate(@RequestParam("userStatus") int Status ,User user){
+        try{
+            userService.updateUser(user);
+            return "redirect:/user/administration/"+Status;
+
+        } catch (SSException e) {
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
+
+    @RequestMapping(value = "/qq" ,method = RequestMethod. GET)
+    public String qq(){
+        int status = 2;
+        return "redirect:/user/administration/"+status;
+    }
 }
