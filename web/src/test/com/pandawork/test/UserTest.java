@@ -1,8 +1,12 @@
+package com.pandawork.test;
+
 import com.pandawork.common.entity.User;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.UserService;
+import com.pandawork.test.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.pandawork.*;
 
 /**用户登录测试
  * newframework

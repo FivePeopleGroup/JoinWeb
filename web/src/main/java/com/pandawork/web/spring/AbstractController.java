@@ -10,6 +10,7 @@ import com.pandawork.core.framework.bean.StaticAutoWire;
 import com.pandawork.core.framework.web.spring.controller.Base;
 import com.pandawork.service.MemberService;
 import com.pandawork.service.StudentService;
+import com.pandawork.service.UserService;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -181,5 +182,8 @@ public class AbstractController extends Base {
     @Qualifier("memberService")
     protected static MemberService memberService ;
 
+    @StaticAutoWire
+    @Qualifier("userService")
+    protected static UserService userService;
 
 }

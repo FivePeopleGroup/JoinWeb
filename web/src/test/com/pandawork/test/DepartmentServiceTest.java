@@ -1,4 +1,4 @@
-package com.pandawork.test;
+package com.pandawork;
 
 import com.pandawork.common.entity.Department;
 import com.pandawork.core.common.exception.SSException;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by Claus on 2017/8/10.
  */
-public class DepartmentServiceTest extends AbstractTestCase {
+public class DepartmentServiceTest extends com.pandawork.test.AbstractTestCase {
 
     @Autowired
     DepartmentService departmentService;

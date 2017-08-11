@@ -1,10 +1,11 @@
-/**
+package com.pandawork.test; /**
  * Created by wangh on 2017/8/10.
  */
 
 import com.pandawork.common.entity.Member;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.MemberService;
+import com.pandawork.test.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

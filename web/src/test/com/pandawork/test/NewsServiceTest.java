@@ -13,7 +13,7 @@ import java.util.List;
  * 新闻测试
  * Created by 侯淑婷 on 2017/8/10.
  */
-public class NewsServiceTest extends AbstractTestCase{
+public class NewsServiceTest extends AbstractTestCase {
 
     @Autowired
     NewsService newsService;

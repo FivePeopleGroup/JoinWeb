@@ -60,8 +60,8 @@
         </tr>
         </c:if>
     </table>
-    <th><a href="${website}user/用户注册/">我要注册</a></th>
-    <th><a href="${website}user/用户登录/">我要登录</a></th>
+    <th><a href="${website}user/注册/">我要注册</a></th>
+    <th><a href="${website}user/登录/">我要登录</a></th>
     <th><a href="${website}user/修改个人信息/${user.id}">修改个人信息</a></th>
 </center>
 </body>
