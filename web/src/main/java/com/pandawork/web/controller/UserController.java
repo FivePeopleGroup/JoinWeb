@@ -1,5 +1,6 @@
 package com.pandawork.web.controller;
 
+import com.pandawork.common.entity.News;
 import com.pandawork.common.entity.User;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.core.common.log.LogClerk;
@@ -54,8 +55,10 @@ public class UserController extends AbstractController {
                 redirectAttributes.addFlashAttribute("message", "用户名不存在，请重新登录！！！");
                 return "redirect:/user/login";
             } else if (password.equals(user.getPassword())) {
+                List<News> list = newsService.listAll();
+                model.addAttribute("list",list);
                 model.addAttribute("user", user);
-                return "redirect:/news/list";
+                return "main";
             } else {
                 redirectAttributes.addFlashAttribute("message", "密码错误，请重新登录！！！");
                 return "redirect:/user/login";
@@ -128,7 +131,7 @@ public class UserController extends AbstractController {
      * @return
      * @throws SSException
      */
-    @RequestMapping(value = "/update/{id}" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{id}" ,method = RequestMethod.GET)
     public String update(@PathVariable("id") int id ,Model model)  {
        try{
            User user = userService.queryUserById(id);

@@ -22,9 +22,9 @@ public class UserTest extends AbstractTestCase {
     @Test
     public void addUserTest() throws SSException {
         User user = new User();
-        user.setUsername("小小");
-        user.setPassword("123123");
-        user.setStatus(0);
+        user.setUsername("慧珍");
+        user.setPassword("111");
+        user.setStatus(1);
         userService.addUser(user);
         System.out.println("添加成功");
     }

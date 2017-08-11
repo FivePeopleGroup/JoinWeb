@@ -48,7 +48,7 @@
         <tr align="center">
             <td colspan="2">
                 <input type="submit" value="注册" name="login">
-                <a href="${website}/news/list"> <input type="button" value="取消登录" name="cancel"></a>
+                <a href="${website}/news/list"> <input type="button" value="取消注册" name="cancel"></a>
             </td>
         </tr>
     </table>

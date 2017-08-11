@@ -21,8 +21,8 @@ public class DepartmentServiceTest extends AbstractTestCase {
     @Test
     public void testAddDepartment() throws SSException{
         Department department = new Department();
-        department.setDepartmentName("a");
-        department.setDepartmentDescription("这是一个不存在的部门");
+        department.setDepartmentName("前端");
+        department.setDepartmentDescription("这是啊啊的部门");
         departmentService.addDepartment(department);
         System.out.println("添加成功！");
     }

@@ -32,14 +32,14 @@
                 </td>
             </tr>
             <tr>
-                <td>新密码:</td>
+                <td>请输入新密码:</td>
                 <td>
                     <input type="password" name="password" value="">
                 </td>
             </tr>
                 <tr>
                     <td>
-                        请输入新密码：
+                        请确认新密码：
                     </td>
                     <td>
                         <input type="password" name="password2" value="">
