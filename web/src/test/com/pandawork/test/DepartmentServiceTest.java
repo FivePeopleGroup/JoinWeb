@@ -1,5 +1,4 @@
 package com.pandawork.test;
-
 import com.pandawork.common.entity.Department;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.DepartmentService;
@@ -15,14 +14,14 @@ public class DepartmentServiceTest extends AbstractTestCase {
     DepartmentService departmentService;
 
     @Test
-    public void testListAll() throws SSException{
+    public void testListAll() throws SSException {
         System.out.println(departmentService.listAll());
     }
 
     @Test
     public void testAddDepartment() throws SSException{
         Department department = new Department();
-        department.setDepartmentName("啥");
+        department.setDepartmentName("a");
         department.setDepartmentDescription("这是一个不存在的部门");
         departmentService.addDepartment(department);
         System.out.println("添加成功！");
