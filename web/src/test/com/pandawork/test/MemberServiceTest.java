@@ -68,7 +68,7 @@ public class MemberServiceTest extends AbstractTestCase {
     @Test
     public void testQueryMemberById() throws Exception {
         Member member = new Member();
-        System.out.println(memberService.queryMemberById(2));
+        System.out.println(memberService.queryMemberById(4));
     }
 
     //根据部门id删除成员
