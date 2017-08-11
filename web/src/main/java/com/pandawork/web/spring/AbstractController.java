@@ -1,6 +1,5 @@
 package com.pandawork.web.spring;
 
-import com.pandawork.common.entity.Department;
 import com.pandawork.common.entity.Member;
 import com.pandawork.common.enums.CookieNameEnums;
 import com.pandawork.common.utils.CookieUtil;
@@ -183,17 +182,12 @@ public class AbstractController extends Base {
 
     @StaticAutoWire
     @Qualifier("userService")
-    protected static UserService userService ;
-
-    @StaticAutoWire
-    @Qualifier("departmentService")
-    protected static DepartmentService departmentService ;
-
+    protected static UserService userService;
     @StaticAutoWire
     @Qualifier("newsService")
     protected static NewsService newsService;
 
-
-
-
+    @StaticAutoWire
+    @Qualifier("departmentService")
+    protected static DepartmentService departmentService;
 }

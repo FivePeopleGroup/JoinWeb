@@ -12,33 +12,46 @@
 </head>
 <body>
 <center>
-    <form  action="${website}user/修改/${userList.id}" method="post">
-<table border="1">
-    <tr>
-    <td>用户名:</td>
-    <td>
-        <input type="text" name="username" value="${user.username}">
-    </td>
-    </tr>
-    <tr>
-        <td>新密码:</td>
-        <td>
-            <input type="password" name="password">
-        </td>
-    </tr>
-    <tr>
-        <td>确认密码:</td>
-        <td>
-            <input type="password" name="password">
-        </td>
-    </tr>
+    <form action="${website}user/doUpdate" method="post">
 
-    <tr>
-        <td>
-            <input type="submit" name="submit" value="提交">
-        </td>
-    </tr>
-    </table>
+        <input type="hidden" name="id" value="${user.id}"/>
+        <input type="hidden" name="status" value="${user.status}"/>
+        <table border="1" style="margin-top: 200px">
+            <%--<tr style="display: none">--%>
+                <%--<td >--%>
+                    <%--id--%>
+                <%--</td>--%>
+                <%--<td>--%>
+                    <%--${user.id}"--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <tr>
+                <td>用户名:</td>
+                <td>
+                    <input type="text" name="username" value="${user.username}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>请输入新密码:</td>
+                <td>
+                    <input type="password" name="password" value="">
+                </td>
+            </tr>
+                <tr>
+                    <td>
+                        请确认新密码：
+                    </td>
+                    <td>
+                        <input type="password" name="password2" value="">
+                    </td>
+                </tr>
+            <tr align="center">
+                <td  colspan="2">
+                    <input type="submit" name="submit" value="提交">
+                </td>
+            </tr>
+        </table>
+        ${message}
     </form>
 </center>
 </body>

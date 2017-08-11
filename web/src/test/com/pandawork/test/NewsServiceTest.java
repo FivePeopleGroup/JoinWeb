@@ -13,7 +13,7 @@ import java.util.List;
  * 新闻测试
  * Created by 侯淑婷 on 2017/8/10.
  */
-public class NewsServiceTest extends AbstractTestCase{
+public class NewsServiceTest extends AbstractTestCase {
 
     @Autowired
     NewsService newsService;
@@ -25,7 +25,7 @@ public class NewsServiceTest extends AbstractTestCase{
     @Test
     public void testAddNews() throws SSException{
         News news = new News();
-        news.setTitle("陈芳很可爱");
+        news.setTitle("侯舒婷宝宝很可爱");
         news.setContent("小可爱一样");
         newsService.addNews(news);
         System.out.println("成功添加！");

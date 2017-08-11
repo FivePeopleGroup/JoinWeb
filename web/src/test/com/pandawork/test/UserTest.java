@@ -3,8 +3,10 @@ package com.pandawork.test;
 import com.pandawork.common.entity.User;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.UserService;
+import com.pandawork.test.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.pandawork.*;
 
 /**用户登录测试
  * newframework
@@ -20,9 +22,9 @@ public class UserTest extends AbstractTestCase {
     @Test
     public void addUserTest() throws SSException {
         User user = new User();
-        user.setUsername("小小");
-        user.setPassword("123123");
-        user.setStatus(0);
+        user.setUsername("慧珍");
+        user.setPassword("111");
+        user.setStatus(1);
         userService.addUser(user);
         System.out.println("添加成功");
     }
@@ -33,7 +35,7 @@ public class UserTest extends AbstractTestCase {
      */
     @Test
     public void deleteUserTest()throws SSException{
-         userService.deleteUser(2);
+         userService.deleteUser(5);
         System.out.println("删除成功");
     }
 
@@ -44,10 +46,10 @@ public class UserTest extends AbstractTestCase {
     @Test
     public void updateUserTest()throws SSException{
         User user = new User();
-        user.setUsername("小冰");
+        user.setUsername("陈芳");
         user.setPassword("111111");
-        user.setStatus(0);
-        user.setId(13);
+        user.setStatus(2);
+        user.setId(4);
         userService.updateUser(user);
     }
 

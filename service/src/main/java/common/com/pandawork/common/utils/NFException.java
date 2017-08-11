@@ -50,8 +50,6 @@ public enum  NFException implements IBizExceptionMes {
     QueryByIdFailed("按照id查询新闻失败",50017 ),
     queryNewsByKeyWordFailed("根据关键字查询新闻失败", 50018),
     ListNewsAll("获取新闻列表失败",50003),
-
-
     ListAllDepartment("获取部门列表失败",30001),
     AddDepartment("增加部门失败",30002),
     DeleteDepartment("删除部门失败",30003),

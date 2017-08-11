@@ -24,30 +24,38 @@
             <th colspan="2">操作</th>
         </tr>
         <c:forEach items="${userList}"  var="userList" varStatus="status">
-            <c:if test="${userstatus == '1' && userList.status == '0'}">
+            <c:if test="${userStatus == '1' && userList.status == '0'}">
             <tr bgcolor="#e0ffff">
                 <td>${status.index+1}</td>
                 <td>${userList.username}</td>
                 <td>普通用户</td>
-                <td colspan="2" align="center"><a href="${website}user/删除/${userList.id}">删除</a>
+                <td colspan="2" align="center"><a href="${website}user/delete/${userList.id}/${userStatus}">删除</a>
             </tr>
             </c:if>
-            <c:if test="${userstatus == '2'}">
+
+
+            <c:if test="${userStatus == '2'}">
             <tr bgcolor="#e0ffff">
                 <td>${status.index+1}</td>
                 <td>${userList.username}</td>
             <c:if test="${userList.status == '0'}">
                 <td>普通用户</td>
+                <td><a href="${website}user/delete/${userList.id}/${userStatus}">删除</a>
+                <td><a href="${website}user/update/${userList.id}/${userStatus}">修改</a>
             </c:if>
             <c:if test="${userList.status == '1'}">
                 <td>管理员</td>
+                <td><a href="${website}user/delete/${userList.id}/${userStatus}">删除</a>
+                <td><a href="${website}user/update/${userList.id}/${userStatus}">修改</a>
             </c:if>
-                <td><a href="${website}user/删除/${userList.id}">删除</a>
-                <td><a href="${website}user/修改/${userList.id}">修改</a>
+                <c:if test="${userList.status == '2'}">
+                <td colspan="3" align="center">超级管理员</td>
+                </c:if>
+
             </tr>
             </c:if>
         </c:forEach>
     </table>
-    <th><a href="${website}news/新闻主页main">返回主页</a></th>
+    <th><a href="${website}news/">返回主页</a></th>
 </body>
 </html>
