@@ -152,16 +152,16 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public String queryByKeyWord(@RequestParam String keyWord, Model model){
+    public String queryByKeyWord(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes){
         try{
             if(Assert.isNull(keyWord)){
-                model.addAttribute("message","搜索栏无内容，请重新填写！");
+                redirectAttributes.addAttribute("message","搜索栏无内容，请重新填写！");
                 return "redirect:/news/list";
             }
             List<News> newsList = Collections.emptyList();
             newsList = newsService.queryByKeyWord(keyWord);
             if(Assert.isEmpty(newsList)){
-                model.addAttribute("message","没有搜索到相关新闻！");
+                redirectAttributes.addAttribute("message","没有搜索到相关新闻！");
                 return "redirect:/news/list";
             }
             model.addAttribute("newsList",newsList);
@@ -179,12 +179,14 @@ public class NewsController extends AbstractController{
      * @return 返回
      */
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String newsList(Model model){
+    public String newsList(Model model,HttpServletRequest request){
         try{
+            String message = request.getParameter("message");
             List<News> newsList = Collections.emptyList();
             newsList = newsService.listAll();
             model.addAttribute("newsList",newsList);
-            return "main";
+            model.addAttribute("message",message);
+            return "home";
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());

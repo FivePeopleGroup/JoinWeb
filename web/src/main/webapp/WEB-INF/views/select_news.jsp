@@ -14,8 +14,8 @@
 </head>
 <body>
 <form action="/news/list" method="get">
-    <div>
-        <table cellspacing="0" border="1">
+    <div align="center">
+        <table cellspacing="0" border="1" align="center">
             <caption><h1>${news.title}</h1></caption>
             <tr>
                 <td>发布时间：</td>
