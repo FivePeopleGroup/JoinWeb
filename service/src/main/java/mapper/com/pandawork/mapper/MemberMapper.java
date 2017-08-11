@@ -57,5 +57,11 @@ public interface MemberMapper {
     public List<Member> listAll( ) throws Exception;
 
 
+    /**
+     * 通过部门id查找成员
+     * @return
+     * @throws Exception
+     */
+    public List<Member> queryMemberByDepartmentId(@Param("departmentId") int departmentId) throws Exception;
 
 }

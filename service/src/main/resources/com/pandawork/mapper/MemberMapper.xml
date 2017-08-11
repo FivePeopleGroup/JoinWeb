@@ -10,6 +10,12 @@
         WHERE `id` = #{id}
     </select>
 
+    <select id="queryMemberByDepartmentId" resultMap="pw.Member" >
+        SELECT t_member.*,t_department.department_name AS theDepartmentName
+        FROM `t_member`,`t_department` WHERE t_member.department_id = t_department.id
+        AND t_member.department_id = #{departmentId}
+    </select>
+
     <insert id="addMember">
         INSERT INTO `t_member`
         (`id`, `member_name`, `sex`, `introduce`,
@@ -39,8 +45,8 @@
     </delete>
 
     <select id="listAll" resultMap="pw.Member">
-        SELECT *
-        FROM `t_member`
+        SELECT t_member.*,t_department.department_name AS theDepartmentName
+        FROM `t_member`,`t_department` WHERE t_member.department_id = t_department.id
     </select>
 
 </mapper>

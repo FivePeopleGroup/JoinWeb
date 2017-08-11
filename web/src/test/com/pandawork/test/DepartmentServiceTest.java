@@ -1,5 +1,4 @@
-package com.pandawork;
-
+package com.pandawork.test;
 import com.pandawork.common.entity.Department;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.service.DepartmentService;
@@ -9,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by Claus on 2017/8/10.
  */
-public class DepartmentServiceTest extends com.pandawork.test.AbstractTestCase {
+public class DepartmentServiceTest extends AbstractTestCase {
 
     @Autowired
     DepartmentService departmentService;
 
     @Test
-    public void testListAll() throws SSException{
+    public void testListAll() throws SSException {
         System.out.println(departmentService.listAll());
     }
 
     @Test
     public void testAddDepartment() throws SSException{
         Department department = new Department();
-        department.setDepartmentName("啥");
+        department.setDepartmentName("a");
         department.setDepartmentDescription("这是一个不存在的部门");
         departmentService.addDepartment(department);
         System.out.println("添加成功！");

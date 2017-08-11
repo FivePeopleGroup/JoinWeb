@@ -9,6 +9,11 @@ import com.pandawork.test.AbstractTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 成员管理
@@ -25,15 +30,15 @@ public class MemberServiceTest extends AbstractTestCase {
     @Test
     public void testAddMember() throws Exception {
         Member member = new Member();
-        member.setMemberName("小芳");
+        member.setMemberName("小lll");
         member.setSex("女");
-        member.setIntroduce("村花");
+        member.setIntroduce("aaa");
         member.setDepartmentId(1);
         memberService.addMember(member);
         System.out.println("添加成功");
     }
 
-    //测试查询成员列表
+    //测试查询全部成员列表
     @Test
     public void testListAll() throws Exception {
         System.out.print(memberService.listAll());
@@ -72,6 +77,12 @@ public class MemberServiceTest extends AbstractTestCase {
     public void testDeleteMemberByDepartmentId() throws Exception{
         memberService.deleteMemberByDepartmentId(1);
         System.out.println("删除成功！");
+    }
+
+    //根据部门id查找成员
+    @Test
+    public void testQueryMemberByDepartmentId() throws Exception{
+        System.out.println(memberService.queryMemberByDepartmentId(1));
     }
 
 
