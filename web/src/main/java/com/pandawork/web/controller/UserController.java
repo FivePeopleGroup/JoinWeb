@@ -55,7 +55,7 @@ public class UserController extends AbstractController {
                 return "redirect:/user/login";
             } else if (password.equals(user.getPassword())) {
                 model.addAttribute("user", user);
-                return "新闻首页";
+                return "redirect:/news/list";
             } else {
                 redirectAttributes.addFlashAttribute("message", "密码错误，请重新登录！！！");
                 return "redirect:/user/login";

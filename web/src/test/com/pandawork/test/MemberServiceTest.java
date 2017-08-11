@@ -30,7 +30,7 @@ public class MemberServiceTest extends AbstractTestCase {
     @Test
     public void testAddMember() throws Exception {
         Member member = new Member();
-        member.setMemberName("小lll");
+        member.setMemberName("王慧珍");
         member.setSex("女");
         member.setIntroduce("aaa");
         member.setDepartmentId(1);

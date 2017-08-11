@@ -40,7 +40,7 @@
       <tr align="center">
           <td colspan="2">
           <input type="submit" value="登录" name="login">
-          <a href="新闻首页"> <input type="button" value="取消登录" name="cancel"></a>
+          <a href="${website}news/list"> <input type="button" value="取消登录" name="cancel"></a>
           </td>
       </tr>
 
@@ -48,7 +48,7 @@
     ${message}
 </form>
 
-    <th><a href="${website}user/update/${7}">修改个人信息</a></th>
+
 
 </center>
 </body>
