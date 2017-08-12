@@ -50,6 +50,7 @@
         </table>
         <input type="submit" value="确定修改">
     </form>
+    ${msg}
 </center>
 
 </body>

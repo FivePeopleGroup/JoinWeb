@@ -96,11 +96,13 @@ public class MemberController extends AbstractController {
      * @return
      * @throws SSException
      */
-    @RequestMapping(value = "/update/{id}/{userstatus}", method = RequestMethod.GET)
-    public String toUpdateMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,Model model) throws Exception {
+    @RequestMapping(value = "/toUpdate/{id}/{userstatus}", method = RequestMethod.GET)
+    public String toUpdateMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,Model model,HttpServletRequest request) throws Exception {
+        String msg = request.getParameter("msg");
         List<Department> list = Collections.emptyList();
         list = departmentService.listAll();
         Member member = memberService.queryMemberById(id);
+        model.addAttribute("msg",msg);
         model.addAttribute("list",list);
         model.addAttribute("member",member);
         model.addAttribute("userstatus",userstatus);
@@ -114,13 +116,15 @@ public class MemberController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "/update/{userstatus}", method = RequestMethod.POST)
-    public String update(Member member,@PathVariable("userstatus") int userstatus) {
+    public String update(Member member,@PathVariable("userstatus") int userstatus,RedirectAttributes redirectAttributes) {
         try {
-            if(!Assert.isNotNull(member)){
-                return null;
+            if(Assert.isNull(member.getMemberName())||Assert.isNull(member.getSex())||Assert.isNull(member.getDepartmentId())||Assert.isNull(member.getIntroduce())){
+                redirectAttributes.addAttribute("msg","请填入完整信息！");
+                return "redirect:/member/toUpdate/" + member.getId()+ "/" + userstatus;
             }
+            else{
             memberService.updateMember(member);
-            return "redirect:/member/list/"+userstatus;
+            return "redirect:/member/list/"+userstatus;}
         } catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());

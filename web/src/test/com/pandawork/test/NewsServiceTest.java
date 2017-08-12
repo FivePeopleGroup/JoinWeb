@@ -25,8 +25,8 @@ public class NewsServiceTest extends AbstractTestCase {
     @Test
     public void testAddNews() throws SSException{
         News news = new News();
-        news.setTitle("侯舒婷宝宝很可爱");
-        news.setContent("小可爱一样");
+        news.setTitle("笑爆炸了");
+        news.setContent("oooo");
         newsService.addNews(news);
         System.out.println("成功添加！");
     }

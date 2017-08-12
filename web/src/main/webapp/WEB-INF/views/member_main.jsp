@@ -36,7 +36,7 @@
                 <td><textarea>${member.introduce}</textarea></td>
                 <c:if test="${userstatus == '2'}">
                 <td><a href="${website}member/delete/${member.id}/${userstatus}">删除</a>
-                <td><a href="${website}member/update/${member.id}/${userstatus}">修改</a>
+                <td><a href="${website}member/toUpdate/${member.id}/${userstatus}">修改</a>
                 </c:if>
             </tr>
         </c:forEach>

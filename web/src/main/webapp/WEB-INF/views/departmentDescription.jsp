@@ -15,15 +15,13 @@
 <center>
     <table border="1" style="text-align: center;font-size: 15px">
         <tr>
-            <th>序号</th>
             <th>部门名称</th>
             <th>部门简介</th>
         </tr>
-        <tr>
-            <td>${Status.index+1}</td>
-            <td>${department.departmentName}</td>
-            <td>${department.departmentDescription}</td>
-        </tr>
+            <tr>
+                <td>${department.departmentName}</td>
+                <td>${department.departmentDescription}</td>
+            </tr>
     </table>
 </center>
 </body>
