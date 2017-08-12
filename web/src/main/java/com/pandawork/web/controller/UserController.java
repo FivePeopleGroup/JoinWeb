@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class UserController extends AbstractController {
 
     /**
      * 跳到登陆页面
-     *q
+     *
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -43,7 +45,7 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(Model model,@RequestParam("username") String username, @RequestParam("password") String password, RedirectAttributes redirectAttributes) throws SSException {
+    public String doLogin(@RequestParam("username") String username, @RequestParam("password") String password, RedirectAttributes redirectAttributes) throws SSException {
 
         if (Assert.isNull(username)) {
             redirectAttributes.addFlashAttribute("message", "用户名为空，请重新登录！！！");
@@ -55,7 +57,7 @@ public class UserController extends AbstractController {
                 redirectAttributes.addFlashAttribute("message", "用户名不存在，请重新登录！！！");
                 return "redirect:/user/login";
             } else if (password.equals(user.getPassword())) {
-                return "redirect:/user/qq/"+user;
+                return "redirect:/user/qq/"+user.getId();
             } else {
                 redirectAttributes.addFlashAttribute("message", "密码错误，请重新登录！！！");
                 return "redirect:/user/login";
@@ -264,15 +266,16 @@ public class UserController extends AbstractController {
 
     /**
      * 跳转到主页
-     * @param user
      * @param model
+     * @param id
      * @return
      */
-    @RequestMapping(value = "/qq/{user}" ,method = RequestMethod. GET)
-    public String qq(@PathVariable("user")User user,Model model) {
+    @RequestMapping(value = "/qq/{id}" ,method = RequestMethod. GET)
+    public String qq(Model model, @PathVariable("id") int id, HttpSession session) {
       try{
+          User user  = userService.queryUserById(id);
           List<News> list = newsService.listAll();
-          model.addAttribute("user", user);
+          session.setAttribute("user",user);
           model.addAttribute("list",list);
           return "main";
       } catch (SSException e) {

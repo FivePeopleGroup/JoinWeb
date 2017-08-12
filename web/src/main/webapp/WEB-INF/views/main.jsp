@@ -25,7 +25,8 @@
     </tr>
 </table>
 <%--新闻模糊查询--%>
-<form action="${website}/news/search" method="post">
+    <p align="center">${message}</p>
+<form action="${website}/news/searchMain/${user.id}" method="post">
     <input type="text" name="keyWord"/>
     <input type="submit" name="submit" value="搜索新闻"/>
 </form>
@@ -43,20 +44,20 @@
     <c:forEach items="${list}"  var="news" varStatus="status">
         <tr>
             <td>${status.index+1}</td>
-            <td><a href="${website}news/select/${news.id}">${news.title}</a>
+            <td><a href="${website}news/select/${news.id}" target="_blank">${news.title}</a>
             </td>
             <td>${news.date}</td>
             <c:if test="${user.status == '1'|| user.status == '2'}">
                 <td><a href="${website}news/delete/${news.id}">删除</a>
                 </td>
-                <td><a href="${website}news/to_edit/${news.id}">修改</a>
+                <td><a href="${website}news/to_edit/${news.id}" target="_blank">修改</a>
                 </td>
             </c:if>
         </tr>
     </c:forEach>
     <c:if test="${user.status == '1'||user.status == '2'}">
         <tr>
-            <td colspan="5" align="right"><a href="${website}news/to_add">添加</a></td>
+            <td colspan="5" align="right"><a href="${website}news/to_add/${user.id}">添加</a></td>
         </tr>
     </c:if>
 </table>

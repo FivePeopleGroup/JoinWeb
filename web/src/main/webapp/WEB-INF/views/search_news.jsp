@@ -26,9 +26,16 @@
             <td>${news.date}</td>
         </tr>
     </c:forEach>
+    <c:if test="${id == '0'}">
     <tr align="center">
         <td colspan="3" align="center"><a href="/news/list">返回首页</a></td>
     </tr>
+    </c:if>
+    <c:if test="${id != '0'}">
+    <tr align="center">
+        <td colspan="3" align="center"><a href="/user/qq/${id}">返回首页</a></td>
+    </tr>
+    </c:if>
 </table>
 </body>
 </html>

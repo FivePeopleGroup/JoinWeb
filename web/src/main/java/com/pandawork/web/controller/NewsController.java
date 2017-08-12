@@ -1,6 +1,7 @@
 package com.pandawork.web.controller;
 
 import com.pandawork.common.entity.News;
+import com.pandawork.common.entity.User;
 import com.pandawork.core.common.exception.SSException;
 import com.pandawork.core.common.log.LogClerk;
 import com.pandawork.core.common.util.Assert;
@@ -28,12 +29,16 @@ public class NewsController extends AbstractController{
 
     /**
      * 添加前的操作
-     * @return 返回
+     * @param request
+     * @param model
+     * @param id
+     * @return
      */
-    @RequestMapping(value = "/to_add",method = RequestMethod.GET)
-    public String toAddNews(HttpServletRequest request,Model model){
+    @RequestMapping(value = "/to_add/{id}",method = RequestMethod.GET)
+    public String toAddNews(HttpServletRequest request,Model model,@PathVariable("id") int id){
         String message = request.getParameter("message");
         model.addAttribute("message",message);
+        model.addAttribute("id",id);
         return "add_news";
     }
 
@@ -151,8 +156,8 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/search",method = RequestMethod.POST)
-    public String queryByKeyWord(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/searchHome/{id}",method = RequestMethod.POST)
+    public String queryByKeyWordHome(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable("id") int id){
         try{
             if(Assert.isNull(keyWord)){
                 redirectAttributes.addAttribute("message","搜索栏无内容，请重新填写！");
@@ -165,6 +170,38 @@ public class NewsController extends AbstractController{
                 return "redirect:/news/list";
             }
             model.addAttribute("newsList",newsList);
+            model.addAttribute("id",id);
+            return "search_news";
+        }catch (SSException e){
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
+    @RequestMapping(value = "/searchMain/{id}",method = RequestMethod.POST)
+    public String queryByKeyWordMain(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable int id){
+        try{
+            if(Assert.isNull(keyWord)){
+                model.addAttribute("message","搜索栏无内容，请重新填写！");
+                User user = userService.queryUserById(id);
+                List<News> newsList = newsService.listAll();
+                model.addAttribute("list",newsList);
+                model.addAttribute("user",user);
+                return "main";
+            }
+            List<News> newsList1 = Collections.emptyList();
+            newsList1 = newsService.queryByKeyWord(keyWord);
+            if(Assert.isEmpty(newsList1)){
+                model.addAttribute("message","没有搜索到相关新闻！");
+                User user = userService.queryUserById(id);
+                List<News> newsList = newsService.listAll();
+                model.addAttribute("list",newsList);
+                model.addAttribute("user",user);
+                return "main";
+            }
+            model.addAttribute("newsList",newsList1);
+            model.addAttribute("id",id);
             return "search_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);

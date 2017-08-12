@@ -36,15 +36,14 @@
                 <td><textarea>${member.introduce}</textarea></td>
                 <c:if test="${userstatus == '2'}">
                 <td><a href="${website}member/delete/${member.id}/${userstatus}">删除</a>
-                <td><a href="${website}member/toUpdate/${member.id}/${userstatus}">修改</a>
+                <td><a href="${website}member/update/${member.id}/${userstatus}" target="_blank">修改</a>
                 </c:if>
             </tr>
         </c:forEach>
     </table>
 <c:if test="${userstatus == '2'}">
-    <a href="${website}member/toAdd/${userstatus}">添加</a>
+    <a href="${website}member/toAdd/${userstatus}" target="_blank">添加</a>
 </c:if>
-    <c:if test=""
     <th><a href="${website}news/list">返回主页</a></th>
 </center>
 </body>

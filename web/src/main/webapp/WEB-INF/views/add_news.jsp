@@ -28,6 +28,9 @@
         <tr>
             <td colspan="2" align="center"><input type="submit" value="确定添加"></td>
         </tr>
+        <tr>
+            <td colspan="2" align="center"><a href="${website}user/qq/${id}">返回主页</a></td>
+        </tr>
     </table>
     </form>
 </div>
