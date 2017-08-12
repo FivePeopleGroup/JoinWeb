@@ -20,7 +20,7 @@
         <c:if test="${user.status == '1' || user.status == '2'}">
             <td><a href="${website}/user/administration/${user.status}">用户管理</a></td>
         </c:if>
-        <td><a href="${website}/department/部门介绍/${user.status}">部门介绍</a></td>
+        <td><a href="${website}/department/list/${user.status}">部门介绍</a></td>
         <td><a href="${website}/member/list/${user.status}">成员介绍</a></td>
     </tr>
 </table>

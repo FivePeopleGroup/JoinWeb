@@ -49,7 +49,7 @@ public interface DepartmentService {
 
     /**
      * 根据部门名查找部门
-     * @param department
+     * @param id
      * @return
      * @throws SSException
      */

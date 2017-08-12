@@ -71,7 +71,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED,rollbackFor = {SSException.class,Exception.class})
     public void updateDepartment(Department department) throws SSException{
-        if (Assert.isNotNull(department)){
+        if (Assert.isNull(department)){
             return;
         }
         try{

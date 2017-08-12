@@ -35,7 +35,7 @@ public class DepartmentServiceTest extends AbstractTestCase {
     @Test
     public void testUpdateDepartment() throws SSException{
         Department department = new Department();
-        department.setId(5);
+        department.setId(9);
         department.setDepartmentName("生活部");
         department.setDepartmentDescription("这是一个只有学生会才有的部门");
         departmentService.updateDepartment(department);

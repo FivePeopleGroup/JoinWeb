@@ -38,7 +38,7 @@ public interface DepartmentMapper {
      * @param department
      * @throws SSException
      */
-    public Department updateDepartment(@Param("department") Department department) throws Exception;
+    public void updateDepartment(@Param("department") Department department) throws Exception;
 
     /**
      * 根据id查找部门
@@ -50,7 +50,7 @@ public interface DepartmentMapper {
 
     /**
      * 根据部门名查找部门
-     * @param department
+     * @param
      * @return
      * @throws SSException
      */

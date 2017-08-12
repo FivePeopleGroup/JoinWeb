@@ -13,12 +13,13 @@
 <body>
 <div class="department">
     <center>
-        <form action="${website}/department/addDepartment" method="post">
+        <form action="${website}/department/addDepartment/${userstatus}" method="post">
             部门名:<input type="text" name="departmentName" style="height:35px;width:300px;margin-top:200px;"><br>
-            部门介绍：<input type="text" name="departmentDescription" style="height:35px;width:300px;margin-top:200px;">
-            <input type="submit" value="提交" style="width:73px;height:22px;margin-top:25px;">
-            <a href="${website}department/list/" style="font-size:20px" ><button>取消增加</button></a>
+            部门介绍：<input type="text" name="departmentDescription" style="height:35px;width:300px;margin-top:20px;"><br>
+            <input type="submit" value="提交" style="width:73px;height:22px;margin-top:25px;"><br>
         </form>
+        <a href="${website}/department/list/${userstatus}" style="font-size:20px;"><button style="margin-top:20px;">取消增加</button></a>
+        ${msg}
     </center>
 </div>
 </body>

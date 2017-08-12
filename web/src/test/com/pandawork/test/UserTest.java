@@ -22,8 +22,8 @@ public class UserTest extends AbstractTestCase {
     @Test
     public void addUserTest() throws SSException {
         User user = new User();
-        user.setUsername("慧珍");
-        user.setPassword("111");
+        user.setUsername("柯招坤");
+        user.setPassword("13015994879");
         user.setStatus(1);
         userService.addUser(user);
         System.out.println("添加成功");
@@ -35,7 +35,7 @@ public class UserTest extends AbstractTestCase {
      */
     @Test
     public void deleteUserTest()throws SSException{
-         userService.deleteUser(5);
+         userService.deleteUser(2);
         System.out.println("删除成功");
     }
 
@@ -46,10 +46,10 @@ public class UserTest extends AbstractTestCase {
     @Test
     public void updateUserTest()throws SSException{
         User user = new User();
-        user.setUsername("陈芳");
-        user.setPassword("111111");
+        user.setUsername("柯招坤");
+        user.setPassword("13015994879");
         user.setStatus(2);
-        user.setId(4);
+        user.setId(1);
         userService.updateUser(user);
     }
 
