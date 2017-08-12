@@ -25,9 +25,16 @@
                 <td>新闻内容：</td>
                 <td>${news.content}</td>
             </tr>
+            <c:if test="${userId=='0'}">
             <tr>
-                <td colspan="2"><input type="submit" value="返回新闻首页"></td>
+                <td colspan="2" align="center"><a href="/news/list">返回新闻首页</a></td>
             </tr>
+            </c:if>
+            <c:if test="${userId!='0'}">
+            <tr>
+                <td colspan="2" align="center"><a href="/user/qq/${userId}">返回新闻首页</a></td>
+            </tr>
+            </c:if>
         </table>
     </div>
 </form>

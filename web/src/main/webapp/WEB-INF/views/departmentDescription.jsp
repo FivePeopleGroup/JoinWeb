@@ -30,15 +30,10 @@
                 </c:forEach>
             </td>
         </tr>
-    <%--</table>--%>
-    <%--<table border="1" style="text-align: center;font-size: 15px">--%>
-        <%--<tr>部门成员</tr>--%>
-        <%--<c:forEach items="${memberList}" var="member" varStatus="Status">--%>
-            <%--<tr>--%>
-                <%--<td>${member.memberName}</td>--%>
-            <%--</tr>--%>
-        <%--</c:forEach>--%>
-    <%--</table>--%>
+        <tr>
+              <td colspan="4" align="center"><a href="${website}department/list/${userstatus}/${userId}">返回</a></td>
+        </tr>
+        </table>
 </center>
 </body>
 </html>

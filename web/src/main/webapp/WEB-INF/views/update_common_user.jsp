@@ -46,8 +46,11 @@
                     </td>
                 </tr>
             <tr align="center">
-                <td  colspan="2">
+                <td>
                     <input type="submit" name="submit" value="提交">
+                </td>
+                <td>
+                    <a href="${website}user/qq/${user.id}"><input type="button" name="button" value="取消"></a>
                 </td>
             </tr>
         </table>

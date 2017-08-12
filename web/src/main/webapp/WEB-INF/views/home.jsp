@@ -18,8 +18,8 @@
         <tr>
             <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
 
-            <td><a href="${website}/department/list/0">部门介绍</a></td>
-            <td><a href="${website}/member/list/0">成员介绍</a></td>
+            <td><a href="${website}/department/list/0/0">部门介绍</a></td>
+            <td><a href="${website}/member/list/0/0">成员介绍</a></td>
         </tr>
     </table>
                 <%--新闻模糊查询--%>
@@ -38,17 +38,17 @@
             <th>内容显示</th>
         </tr>
         <c:forEach items="${newsList}"  var="news" varStatus="status">
-            <tr >
+            <tr>
                 <td>${status.index+1}</td>
-                <td><a href="${website}news/select/${news.id}" target="_blank">${news.title}</a>
+                <td><a href="${website}news/select/${news.id}/0">${news.title}</a>
                 </td>
                 <td>${news.date}</td>
                 <td><textarea name="content">${news.content}</textarea></td>
             </tr>
         </c:forEach>
     </table>
-    <th><a href="${website}user/register/">我要注册</a></th>
-    <th><a href="${website}user/login/">我要登录</a></th>
+    <th><a href="${website}user/register">我要注册</a></th>
+    <th><a href="${website}user/login">我要登录</a></th>
 </center>
 </body>
 </html>

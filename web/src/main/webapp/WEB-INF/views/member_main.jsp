@@ -35,15 +35,21 @@
                 <td>${member.theDepartmentName}</td>
                 <td><textarea>${member.introduce}</textarea></td>
                 <c:if test="${userstatus == '2'}">
-                <td><a href="${website}member/delete/${member.id}/${userstatus}">删除</a>
-                <td><a href="${website}member/toUpdate/${member.id}/${userstatus}">修改</a>
+                <td><a href="${website}member/delete/${member.id}/${userstatus}/${userId}">删除</a>
+                <td><a href="${website}member/toUpdate/${member.id}/${userstatus}/${userId}" >修改</a>
                 </c:if>
             </tr>
         </c:forEach>
     </table>
 <c:if test="${userstatus == '2'}">
-    <a href="${website}member/toAdd/${userstatus}">添加</a>
+    <a href="${website}member/toAdd/${userstatus}/${userId}">添加</a>
 </c:if>
+    <c:if test="${userId == '0'}">
+    <th><a href="${website}news/list">返回主页</a></th>
+    </c:if>
+    <c:if test="${userId != '0'}">
+        <th><a href="${website}user/qq/${userId}">返回主页</a></th>
+    </c:if>
 </center>
 </body>
 </html>

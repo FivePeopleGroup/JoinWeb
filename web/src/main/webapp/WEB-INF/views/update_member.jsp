@@ -14,7 +14,7 @@
 </head>
 <body>
 <center style="margin-top: 130px">
-    <form action="${website}member/update/${userstatus}" method="post">
+    <form action="${website}member/update/${userstatus}/${userId}" method="post">
         <table>
             <input type="hidden" name="id" value="${member.id}"/>
             <tr bgcolor="#e0ffff">
@@ -49,6 +49,7 @@
             </tr>
         </table>
         <input type="submit" value="确定修改">
+        <a href="${website}member/list/${userstatus}/${userId}">取消</a>
     </form>
     ${msg}
 </center>

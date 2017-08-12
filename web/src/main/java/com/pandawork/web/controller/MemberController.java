@@ -32,13 +32,14 @@ public class MemberController extends AbstractController {
      * @return
      * @throws SSException
      */
-    @RequestMapping(value = "/toAdd/{userstatus}", method = RequestMethod.GET)
-    public String toAddMember(@PathVariable("userstatus") int userstatus, Model model, HttpServletRequest request) throws SSException {
+    @RequestMapping(value = "/toAdd/{userstatus}/{userId}", method = RequestMethod.GET)
+    public String toAddMember(@PathVariable("userstatus") int userstatus, Model model, HttpServletRequest request,@PathVariable("userId") int userId) throws SSException {
         String msg = request.getParameter("msg");
         List<Department> list = Collections.emptyList();
         list = departmentService.listAll();
         model.addAttribute("msg",msg);
         model.addAttribute("list",list);
+        model.addAttribute("userId",userId);
         model.addAttribute("userstatus",userstatus);
         return "add_member";
     }
@@ -50,15 +51,15 @@ public class MemberController extends AbstractController {
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value ="/add/{userstatus}", method = RequestMethod.POST)
-    public String addMember(@PathVariable("userstatus") int userstatus, Member member, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value ="/add/{userstatus}/{userId}", method = RequestMethod.POST)
+    public String addMember(@PathVariable("userstatus") int userstatus, Member member, RedirectAttributes redirectAttributes,@PathVariable("userId") int userId) {
         try {
             if(Assert.isNull(member.getMemberName())||Assert.isNull(member.getSex())||Assert.isNull(member.getDepartmentId())||Assert.isNull(member.getIntroduce())){
                 redirectAttributes.addAttribute("msg","请填入完整信息！");
-                return "redirect:/member/toAdd/" + userstatus;
+                return "redirect:/member/toAdd/" + userstatus + "/" + userId;
             }else {
             memberService.addMember(member);
-            return "redirect:/member/list/" + userstatus;}
+            return "redirect:/member/list/" + userstatus + "/" + userId;}
         } catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -74,11 +75,11 @@ public class MemberController extends AbstractController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "delete/{id}/{userstatus}", method = RequestMethod.GET)
-    public String deleteMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus) {
+    @RequestMapping(value = "delete/{id}/{userstatus}/{userId}", method = RequestMethod.GET)
+    public String deleteMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,@PathVariable("userId") int userId) {
         try {
             memberService.deleteMember(id);
-            return "redirect:/member/list/"+userstatus;
+            return "redirect:/member/list/"+userstatus+"/"+ userId;
         } catch (SSException e) {
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -96,8 +97,8 @@ public class MemberController extends AbstractController {
      * @return
      * @throws SSException
      */
-    @RequestMapping(value = "/toUpdate/{id}/{userstatus}", method = RequestMethod.GET)
-    public String toUpdateMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,Model model,HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/toUpdate/{id}/{userstatus}/{userId}", method = RequestMethod.GET)
+    public String toUpdateMember(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,Model model,HttpServletRequest request,@PathVariable("userId") int userId) throws Exception {
         String msg = request.getParameter("msg");
         List<Department> list = Collections.emptyList();
         list = departmentService.listAll();
@@ -105,6 +106,7 @@ public class MemberController extends AbstractController {
         model.addAttribute("msg",msg);
         model.addAttribute("list",list);
         model.addAttribute("member",member);
+        model.addAttribute("userId",userId);
         model.addAttribute("userstatus",userstatus);
         return "update_member";
     }
@@ -115,15 +117,15 @@ public class MemberController extends AbstractController {
      * @param member
      * @return
      */
-    @RequestMapping(value = "/update/{userstatus}", method = RequestMethod.POST)
-    public String update(Member member,@PathVariable("userstatus") int userstatus,RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/update/{userstatus}/{userId}", method = RequestMethod.POST)
+    public String update(Member member,@PathVariable("userstatus") int userstatus,RedirectAttributes redirectAttributes,@PathVariable("userId") int userId) {
         try {
             if(Assert.isNull(member.getMemberName())||Assert.isNull(member.getSex())||Assert.isNull(member.getDepartmentId())||Assert.isNull(member.getIntroduce())){
                 redirectAttributes.addAttribute("msg","请填入完整信息！");
-                return "redirect:/member/toUpdate/" + member.getId()+ "/" + userstatus;
+                return "redirect:/member/toUpdate/" + member.getId()+ "/" + userstatus + "/" + userId;
             } else{
             memberService.updateMember(member);
-            return "redirect:/member/list/"+userstatus;
+            return "redirect:/member/list/"+userstatus + "/" + userId;
             }
         } catch (SSException e){
             LogClerk.errLog.error(e);
@@ -141,13 +143,14 @@ public class MemberController extends AbstractController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/list/{userstatus}", method = RequestMethod.GET)
-    public String listAll(@PathVariable("userstatus") int userstatus, Model model) {
+    @RequestMapping(value = "/list/{userstatus}/{userId}", method = RequestMethod.GET)
+    public String listAll(@PathVariable("userstatus") int userstatus, @PathVariable("userId") int userId , Model model) {
         try {
             List<Member> list = Collections.emptyList();
             list = memberService.listAll();
             model.addAttribute("memberList", list);//此即为foreach循环的item
             model.addAttribute("userstatus",userstatus);
+            model.addAttribute("userId",userId);
             return "member_main";
         } catch (SSException e) {
             LogClerk.errLog.error(e);

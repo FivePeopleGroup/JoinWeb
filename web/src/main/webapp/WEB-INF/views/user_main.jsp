@@ -40,13 +40,13 @@
                 <td>${userList.username}</td>
             <c:if test="${userList.status == '0'}">
                 <td>普通用户</td>
-                <td><a href="${website}user/delete/${userList.id}/${userStatus}">删除</a>
-                <td><a href="${website}user/update/${userList.id}/${userStatus}">修改</a>
+                <td><a href="${website}user/delete/${userList.id}/${userStatus}/${userId}">删除</a>
+                <td><a href="${website}user/update/${userList.id}/${userStatus}/${userId}">修改</a>
             </c:if>
             <c:if test="${userList.status == '1'}">
                 <td>管理员</td>
-                <td><a href="${website}user/delete/${userList.id}/${userStatus}">删除</a>
-                <td><a href="${website}user/update/${userList.id}/${userStatus}">修改</a>
+                <td><a href="${website}user/delete/${userList.id}/${userStatus}/${userId}">删除</a>
+                <td><a href="${website}user/update/${userList.id}/${userStatus}/${userId}">修改</a>
             </c:if>
                 <c:if test="${userList.status == '2'}">
                 <td colspan="3" align="center">超级管理员</td>
@@ -56,6 +56,6 @@
             </c:if>
         </c:forEach>
     </table>
-    <th><a href="${website}news/">返回主页</a></th>
+    <th><a href="${website}user/qq/${userId}">返回主页</a></th>
 </body>
 </html>

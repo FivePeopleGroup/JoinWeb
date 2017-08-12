@@ -28,19 +28,24 @@
         <c:forEach items="${departmentList}"  var="department" varStatus="status">
                 <tr bgcolor="#e0ffff">
                     <td>${status.index+1}</td>
-                    <td><a href="${website}department/queryDepartmentById/${department.id}">${department.departmentName}</a></td>
+                    <td><a href="${website}department/queryDepartmentById/${department.id}/${userstatus}/${userId}">${department.departmentName}</a></td>
                     <td><textarea>${department.departmentDescription}</textarea></td>
                     <c:if test="${userstatus == '2'}">
-                    <td><a href="${website}department/deleteDepartment/${department.id}/${userstatus}">删除</a></td>
-                    <td><a href="${website}department/toUpdateDepartment/${department.id}/${userstatus}">修改</a></td>
+                    <td><a href="${website}department/deleteDepartment/${department.id}/${userstatus}/${userId}">删除</a></td>
+                    <td><a href="${website}department/toUpdateDepartment/${department.id}/${userstatus}/${userId}">修改</a></td>
                     </c:if>
                 </tr>
         </c:forEach>
     </table>
     <c:if test="${userstatus == '2'}">
-        <a href="${website}department/toAddDepartment/${userstatus}">添加</a>
+        <a href="${website}department/toAddDepartment/${userstatus}/${userId}">添加</a>
     </c:if>
-    <th><a href="${website}news/list">返回主页</a></th>
+    <c:if test="${userId != '0' }">
+    <th><a href="${website}user/qq/${userId}">返回主页</a></th>
+    </c:if>
+    <c:if test="${userId == '0' }">
+        <th><a href="${website}news/list">返回主页</a></th>
+    </c:if>
 </center>
 </body>
 </html>

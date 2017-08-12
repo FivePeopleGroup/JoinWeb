@@ -34,11 +34,11 @@ public class NewsController extends AbstractController{
      * @param id
      * @return
      */
-    @RequestMapping(value = "/to_add/{id}",method = RequestMethod.GET)
-    public String toAddNews(HttpServletRequest request,Model model,@PathVariable("id") int id){
+    @RequestMapping(value = "/to_add/{userId}",method = RequestMethod.GET)
+    public String toAddNews(HttpServletRequest request,Model model,@PathVariable("userId") int id){
         String message = request.getParameter("message");
         model.addAttribute("message",message);
-        model.addAttribute("id",id);
+        model.addAttribute("userId",id);
         return "add_news";
     }
 
@@ -47,16 +47,16 @@ public class NewsController extends AbstractController{
      * @param news news
      * @return 返回
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String addNews(News news,Model model,RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/add/{userId}",method = RequestMethod.POST)
+    public String addNews(News news,Model model,RedirectAttributes redirectAttributes,@PathVariable("userId") int userId){
         try{
             if(news.getTitle().equals("")||news.getContent().equals("")){
                 redirectAttributes.addAttribute("message","输入的标题或内容不能为空，请重新填写！");
-                return "redirect:/news/to_add";
+                return "redirect:/news/to_add/" + userId ;
             }
             else{
                 newsService.addNews(news);
-                return "redirect:/news/list";
+                return "redirect:/user/qq/" + userId;
             }
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -70,11 +70,11 @@ public class NewsController extends AbstractController{
      * @param id id
      * @return 返回
      */
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-    public String deleteNews(@PathVariable("id")int id){
+    @RequestMapping(value = "/delete/{newsId}/{userId}",method = RequestMethod.GET)
+    public String deleteNews(@PathVariable("newsId")int newsId,@PathVariable("userId") int id){
         try{
-            newsService.deleteNews(id);
-            return "redirect:/news/list";
+            newsService.deleteNews(newsId);
+            return "redirect:/user/qq/" + id;
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -89,13 +89,14 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/to_edit/{id}",method = RequestMethod.GET)
-    public String editNews(@PathVariable("id") int id, Model model, HttpServletRequest request){
+    @RequestMapping(value = "/to_edit/{newsId}/{userId}",method = RequestMethod.GET)
+    public String editNews(@PathVariable("newsId") int id, Model model, HttpServletRequest request,@PathVariable("userId") int userId){
         try{
             String message = request.getParameter("message");
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
+            model.addAttribute("userId",userId);
             model.addAttribute("message",message);
             return "edit_news";
         }catch (SSException e){
@@ -112,17 +113,17 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/edit/{id}",method = RequestMethod.POST)
-    public String updateNews(News news, @PathVariable("id")int id, Model model, RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/edit/{newsId}/{userId}",method = RequestMethod.POST)
+    public String updateNews(News news, @PathVariable("newsId")int id, Model model, RedirectAttributes redirectAttributes,@PathVariable("userId") int userId){
         try{
             if(news.getContent().equals("")||news.getTitle().equals("")){
                 redirectAttributes.addAttribute("message","修改的标题或内容不能为空，请重新修改！");
-                return "redirect:/news/to_edit/" + id;
+                return "redirect:/news/to_edit/" + id + "/"+ userId;
             }//使用RedirectAttributes
             news.setId(id);
             newsService.updateNews(news);
             model.addAttribute("news",news);
-            return "redirect:/news/list";
+            return "redirect:/user/qq/" + userId;
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -136,12 +137,13 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/select/{id}",method = RequestMethod.GET)
-    public String selectNews(@PathVariable("id")int id,Model model){
+    @RequestMapping(value = "/select/{id}/{userId}",method = RequestMethod.GET)
+    public String selectNews(@PathVariable("id")int id,@PathVariable("userId")int userId, Model model){
         try{
             News news = new News();
             news = newsService.queryById(id);
             model.addAttribute("news",news);
+            model.addAttribute("userId",userId);
             return "select_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -156,8 +158,8 @@ public class NewsController extends AbstractController{
      * @param model model
      * @return 返回
      */
-    @RequestMapping(value = "/searchHome/{id}",method = RequestMethod.POST)
-    public String queryByKeyWordHome(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable("id") int id){
+    @RequestMapping(value = "/searchHome/{userId}",method = RequestMethod.POST)
+    public String queryByKeyWordHome(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable("userId") int id){
         try{
             if(Assert.isNull(keyWord)){
                 redirectAttributes.addAttribute("message","搜索栏无内容，请重新填写！");
@@ -170,7 +172,7 @@ public class NewsController extends AbstractController{
                 return "redirect:/news/list";
             }
             model.addAttribute("newsList",newsList);
-            model.addAttribute("id",id);
+            model.addAttribute("userId",id);
             return "search_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -179,8 +181,8 @@ public class NewsController extends AbstractController{
         }
     }
 
-    @RequestMapping(value = "/searchMain/{id}",method = RequestMethod.POST)
-    public String queryByKeyWordMain(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable int id){
+    @RequestMapping(value = "/searchMain/{userId}",method = RequestMethod.POST)
+    public String queryByKeyWordMain(@RequestParam String keyWord, Model model,RedirectAttributes redirectAttributes,@PathVariable("userId") int id){
         try{
             if(Assert.isNull(keyWord)){
                 model.addAttribute("message","搜索栏无内容，请重新填写！");
@@ -201,7 +203,7 @@ public class NewsController extends AbstractController{
                 return "main";
             }
             model.addAttribute("newsList",newsList1);
-            model.addAttribute("id",id);
+            model.addAttribute("UserId",id);
             return "search_news";
         }catch (SSException e){
             LogClerk.errLog.error(e);

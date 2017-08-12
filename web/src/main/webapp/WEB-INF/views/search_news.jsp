@@ -22,18 +22,18 @@
     <c:forEach items="${newsList}"  var="news" varStatus="status">
         <tr align="center">
             <td>${status.index+1}</td>
-            <td><a href="${website}news/select/${news.id}">${news.title}</a></td>
+            <td><a href="${website}news/select/${news.id}/${userId}">${news.title}</a></td>
             <td>${news.date}</td>
         </tr>
     </c:forEach>
-    <c:if test="${id == '0'}">
+    <c:if test="${userId == '0'}">
     <tr align="center">
-        <td colspan="3" align="center"><a href="/news/list">返回首页</a></td>
+        <td colspan="3" align="center"><a href="${website}news/list">返回首页</a></td>
     </tr>
     </c:if>
-    <c:if test="${id != '0'}">
+    <c:if test="${userId != '0'}">
     <tr align="center">
-        <td colspan="3" align="center"><a href="/user/qq/${id}">返回首页</a></td>
+        <td colspan="3" align="center"><a href="${website}user/qq/${userId}">返回首页</a></td>
     </tr>
     </c:if>
 </table>

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div>
-    <form action="/news/add" method="post">
+    <form action="/news/add/${userId}" method="post">
     <table cellspacing="0" border="1" align="center">
         <caption>${message}</caption>
         <tr align="center">
@@ -29,7 +29,7 @@
             <td colspan="2" align="center"><input type="submit" value="确定添加"></td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><a href="${website}user/qq/${id}">返回主页</a></td>
+            <td colspan="2" align="center"><a href="${website}user/qq/${userId}">返回主页</a></td>
         </tr>
     </table>
     </form>

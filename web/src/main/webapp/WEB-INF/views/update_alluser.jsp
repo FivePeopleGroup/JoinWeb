@@ -14,7 +14,7 @@
 </head>
 <body>
 <center>
-    <form  action="${website}user/ManagerDoUpdate" method="post">
+    <form  action="${website}user/ManagerDoUpdate/${userId}" method="post">
         <table border="1">
             <tr hidden >
                 <td>
@@ -56,8 +56,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center">
+                <td align="center">
                     <input type="submit" name="submit" value="提交">
+                </td>
+                <td align="center">
+                   <a href="${website}user/administration/${userStatus}/${userId}"> <input type="button" name="button" value="取消"> </a>
                 </td>
             </tr>
 

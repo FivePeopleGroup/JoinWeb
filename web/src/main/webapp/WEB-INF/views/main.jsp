@@ -18,10 +18,10 @@
     <tr>
         <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
         <c:if test="${user.status == '1' || user.status == '2'}">
-            <td><a href="${website}/user/administration/${user.status}">用户管理</a></td>
+            <td><a href="${website}/user/administration/${user.status}/${user.id}">用户管理</a></td>
         </c:if>
-        <td><a href="${website}/department/list/${user.status}">部门介绍</a></td>
-        <td><a href="${website}/member/list/${user.status}">成员介绍</a></td>
+        <td><a href="${website}/department/list/${user.status}/${user.id}">部门介绍</a></td>
+        <td><a href="${website}/member/list/${user.status}/${user.id}">成员介绍</a></td>
     </tr>
 </table>
 <%--新闻模糊查询--%>
@@ -44,13 +44,13 @@
     <c:forEach items="${list}"  var="news" varStatus="status">
         <tr>
             <td>${status.index+1}</td>
-            <td><a href="${website}news/select/${news.id}" target="_blank">${news.title}</a>
+            <td><a href="${website}news/select/${news.id}/${user.id}">${news.title}</a>
             </td>
             <td>${news.date}</td>
             <c:if test="${user.status == '1'|| user.status == '2'}">
-                <td><a href="${website}news/delete/${news.id}">删除</a>
+                <td><a href="${website}news/delete/${news.id}/${user.id}">删除</a>
                 </td>
-                <td><a href="${website}news/to_edit/${news.id}" target="_blank">修改</a>
+                <td><a href="${website}news/to_edit/${news.id}/${user.id}">修改</a>
                 </td>
             </c:if>
         </tr>
@@ -60,8 +60,11 @@
             <td colspan="5" align="right"><a href="${website}news/to_add/${user.id}">添加</a></td>
         </tr>
     </c:if>
+    <tr>
+        <td align="center"><a href="${website}user/update/${user.id}">修改个人信息</a></td>
+       <td colspan="2" align="center"><a style="margin: 5px" href="${website}news/list">退出登录</a></td>
+    </tr>
 </table>
-<th><a href="${website}user/update/${user.id}">修改个人信息</a></th>
 </center>
 </body>
 </html>

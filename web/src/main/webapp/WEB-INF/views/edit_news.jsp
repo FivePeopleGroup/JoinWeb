@@ -13,7 +13,7 @@
     <title>新闻修改页面</title>
 </head>
 <body>
-<form action="/news/edit/${news.id}" method="POST">
+<form action="${website}news/edit/${news.id}/${userId}" method="POST">
 <div>
     <table>
         <caption>${message}</caption>
@@ -27,6 +27,9 @@
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="确定修改"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><a href="${website}user/qq/${userId}"><input type="button" value="返回"></a></td>
         </tr>
     </table>
 </div>

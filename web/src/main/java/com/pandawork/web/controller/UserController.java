@@ -185,12 +185,13 @@ public class UserController extends AbstractController {
      * @return
      */
 
-    @RequestMapping(value = "/administration/{status}" ,method = RequestMethod.GET)
-    public String administration(@PathVariable("status") int status ,Model model ) {
+    @RequestMapping(value = "/administration/{status}/{userId}" ,method = RequestMethod.GET)
+    public String administration(@PathVariable("status") int status ,Model model,@PathVariable("userId") int userId ) {
      try{
          List<User> userList = userService.listAll();
          model.addAttribute("userList" ,userList);
          model.addAttribute("userStatus",status);
+         model.addAttribute("userId",userId);
          return "user_main";
      } catch (SSException e) {
          LogClerk.errLog.error(e);
@@ -208,12 +209,12 @@ public class UserController extends AbstractController {
      * @param redirectAttributes
      * @return
      */
-    @RequestMapping(value = "/delete/{id}/{userStatus}" ,method = RequestMethod.GET)
-    public String delete(@PathVariable("id") int id , @PathVariable("userStatus") int Status ,RedirectAttributes redirectAttributes ){
+    @RequestMapping(value = "/delete/{id}/{userStatus}/{userId}" ,method = RequestMethod.GET)
+    public String delete(@PathVariable("id") int id , @PathVariable("userStatus") int Status ,RedirectAttributes redirectAttributes,@PathVariable("userId") int userId ){
         try{
             userService.deleteUser(id);
             redirectAttributes.addAttribute("Status" ,Status);
-            return "redirect:/user/administration/"+Status;
+            return "redirect:/user/administration/"+Status + "/" + userId;
         } catch (SSException e) {
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -229,11 +230,12 @@ public class UserController extends AbstractController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/update/{id}/{userStatus}",method = RequestMethod.GET)
-      public String update(@PathVariable("id") int id ,@PathVariable("userStatus") int userStatus ,RedirectAttributes redirectAttributes ,Model model){
+    @RequestMapping(value = "/update/{id}/{userStatus}/{userId}",method = RequestMethod.GET)
+      public String update(@PathVariable("id") int id ,@PathVariable("userStatus") int userStatus ,RedirectAttributes redirectAttributes ,Model model,@PathVariable("userId") int userId){
        try{
            User user = userService.queryUserById(id);
            model.addAttribute("user",user);
+           model.addAttribute("userId",userId);
            redirectAttributes.addAttribute("userStatus" ,userStatus);
            return "update_alluser";
        } catch (SSException e) {
@@ -250,11 +252,11 @@ public class UserController extends AbstractController {
      * @param user
      * @return
      */
-    @RequestMapping(value = "/ManagerDoUpdate"  ,method = RequestMethod.POST)
-    public String doUpdate(@RequestParam("userStatus") int Status ,User user){
+    @RequestMapping(value = "/ManagerDoUpdate/{userId}"  ,method = RequestMethod.POST)
+    public String doUpdate(@RequestParam("userStatus") int Status ,User user,@PathVariable("userId") int userId){
         try{
             userService.updateUser(user);
-            return "redirect:/user/administration/"+Status;
+            return "redirect:/user/administration/"+Status+ "/" + userId;
 
         } catch (SSException e) {
             LogClerk.errLog.error(e);
@@ -271,11 +273,11 @@ public class UserController extends AbstractController {
      * @return
      */
     @RequestMapping(value = "/qq/{id}" ,method = RequestMethod. GET)
-    public String qq(Model model, @PathVariable("id") int id, HttpSession session) {
+    public String qq(Model model, @PathVariable("id") int id) {
       try{
           User user  = userService.queryUserById(id);
           List<News> list = newsService.listAll();
-          session.setAttribute("user",user);
+          model.addAttribute("user",user);
           model.addAttribute("list",list);
           return "main";
       } catch (SSException e) {

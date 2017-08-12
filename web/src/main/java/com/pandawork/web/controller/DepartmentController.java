@@ -24,12 +24,13 @@ import java.util.List;
 @RequestMapping("/department")
 public class DepartmentController extends AbstractController {
 
-    @RequestMapping(value = "/list/{userstatus}",method = RequestMethod.GET)
-    public String departmentList(@PathVariable("userstatus") int userstatus,Model model){
+    @RequestMapping(value = "/list/{userstatus}/{userId}",method = RequestMethod.GET)
+    public String departmentList(@PathVariable("userstatus") int userstatus,Model model,@PathVariable("userId") int userId){
         try{
             List<Department> list = Collections.emptyList();
             list = departmentService.listAll();
             model.addAttribute("departmentList",list);
+            model.addAttribute("userId",userId);
             model.addAttribute("userstatus",userstatus);
             return "department_main";
         }catch (SSException e){
@@ -43,23 +44,24 @@ public class DepartmentController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/toAddDepartment/{userstatus}", method = RequestMethod.GET)
-    public String toAddDepartment(@PathVariable("userstatus") int userstatus, Model model, HttpServletRequest request){
+    @RequestMapping(value = "/toAddDepartment/{userstatus}/{userId}", method = RequestMethod.GET)
+    public String toAddDepartment(@PathVariable("userstatus") int userstatus, Model model, HttpServletRequest request,@PathVariable("userId") int userId){
         String msg = request.getParameter("msg");
         model.addAttribute("msg",msg);
+        model.addAttribute("userId",userId);
         model.addAttribute("userstatus",userstatus);
         return "toAddDepartment";
     }
 
-    @RequestMapping(value = "/addDepartment/{userstatus}",method = RequestMethod.POST)
-    public String addDepartment(@PathVariable("userstatus") int userstatus,Department department, RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/addDepartment/{userstatus}/{userId}",method = RequestMethod.POST)
+    public String addDepartment(@PathVariable("userstatus") int userstatus,Department department, RedirectAttributes redirectAttributes,@PathVariable("userId") int userId){
         try{
             if(Assert.isNull(department.getDepartmentName())||Assert.isNull(department.getDepartmentDescription())) {
                 redirectAttributes.addAttribute("msg", "请填入完整信息！");
-                return "redirect:/department/toAddDepartment/" + userstatus;
+                return "redirect:/department/toAddDepartment/" + userstatus + "/" + userId;
             }else{
                 departmentService.addDepartment(department);
-                return "redirect:/department/list/" + userstatus;
+                return "redirect:/department/list/" + userstatus + "/" + userId;
             }
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -72,12 +74,12 @@ public class DepartmentController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "deleteDepartment/{id}/{userstatus}",method = RequestMethod.GET)
-    public String deleteDepartment(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus){
+    @RequestMapping(value = "deleteDepartment/{id}/{userstatus}/{userId}",method = RequestMethod.GET)
+    public String deleteDepartment(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,@PathVariable("userId") int userId){
         try{
             departmentService.deleteDepartment(id);
             memberService.deleteMemberByDepartmentId(id);
-            return "redirect:/department/list/"+userstatus;
+            return "redirect:/department/list/"+ userstatus + "/" + userId;
         }catch (SSException e){
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
@@ -89,8 +91,8 @@ public class DepartmentController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "toUpdateDepartment/{id}/{userstatus}",method = RequestMethod.GET)
-    public String toUpdateDepartment(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,RedirectAttributes redirectAttributes,Model model,HttpServletRequest request){
+    @RequestMapping(value = "toUpdateDepartment/{id}/{userstatus}/{userId}",method = RequestMethod.GET)
+    public String toUpdateDepartment(@PathVariable("id") int id,@PathVariable("userstatus") int userstatus,RedirectAttributes redirectAttributes,Model model,HttpServletRequest request,@PathVariable("userId") int userId){
         redirectAttributes.addAttribute("id",id);
         try{
             String msg = request.getParameter("msg");
@@ -98,6 +100,7 @@ public class DepartmentController extends AbstractController {
             model.addAttribute("msg",msg);
             model.addAttribute("department",department);
             model.addAttribute("userstatus",userstatus);
+            model.addAttribute("userId",userId);
             return "toUpdateDepartment";
         }catch (Exception e){
             LogClerk.errLog.error(e);
@@ -106,15 +109,15 @@ public class DepartmentController extends AbstractController {
         }
     }
 
-    @RequestMapping(value = "/updateDepartment/{id}/{userstatus}",method = RequestMethod.POST)
-    public String updateDepartment(Department department,@PathVariable("userstatus") int userstatus,@PathVariable("id") int id, RedirectAttributes redirectAttributes){
+    @RequestMapping(value = "/updateDepartment/{id}/{userstatus}/{userId}",method = RequestMethod.POST)
+    public String updateDepartment(Department department,@PathVariable("userstatus") int userstatus,@PathVariable("id") int id, RedirectAttributes redirectAttributes,@PathVariable("userId") int userId){
         try{
             if (Assert.isNull(department)||Assert.isNull(department.getDepartmentName())||Assert.isNull(department.getDepartmentDescription())){
                 redirectAttributes.addAttribute("msg","请填入完整信息！");
-                return "redirect:/department/toUpdateDepartment/" + department.getId()+ "/" + userstatus;
+                return "redirect:/department/toUpdateDepartment/" + department.getId()+ "/" + userstatus + "/" + userId;
             }else{
                 departmentService.updateDepartment(department);
-                return "redirect:/department/list/"+userstatus;
+                return "redirect:/department/list/"+userstatus+ "/" + userId;
             }
         }catch (SSException e){
             LogClerk.errLog.error(e);
@@ -126,14 +129,16 @@ public class DepartmentController extends AbstractController {
         }
     }
 
-    @RequestMapping(value = "queryDepartmentById/{id}",method = RequestMethod.GET)
-    public String queryDepartmentById(@PathVariable("id") int id,Model model) {
+    @RequestMapping(value = "queryDepartmentById/{id}/{userstatus}/{userId}",method = RequestMethod.GET)
+    public String queryDepartmentById(@PathVariable("id") int id,Model model,@PathVariable("userId") int userId,@PathVariable("userstatus") int userstatus) {
         try{
             Department department = departmentService.queryDepartmentById(id);
             List<Member> list = Collections.emptyList();
             list = memberService.queryMemberByDepartmentId(id);
             model.addAttribute("department",department);
             model.addAttribute("memberList",list);
+            model.addAttribute("userId",userId);
+            model.addAttribute("userstatus",userstatus);
             return "departmentDescription";
         }catch (Exception e){
             LogClerk.errLog.error(e);

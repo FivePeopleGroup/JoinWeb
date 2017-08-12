@@ -14,7 +14,7 @@
 <body>
 <div class="main">
     <center style="margin-top: 130px">
-        <form action="${website}member/add/${userstatus}" method="post">
+        <form action="${website}member/add/${userstatus}/${userId}" method="post">
             <table>
                 <tr bgcolor="#e0ffff">
                     <td>姓名</td>
@@ -45,7 +45,9 @@
                 </tr>
             </table>
             <input type="submit" value="提交">
+            <a href="${website}member/list/${userstatus}/${userId}">取消</a>
         </form>
+
         ${msg}
     </center>
 </div>
