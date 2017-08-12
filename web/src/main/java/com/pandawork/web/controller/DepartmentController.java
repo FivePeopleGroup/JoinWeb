@@ -1,6 +1,7 @@
 package com.pandawork.web.controller;
 
 import com.pandawork.common.entity.Department;
+import com.pandawork.common.entity.Member;
 import com.pandawork.core.common.log.LogClerk;
 import com.pandawork.core.common.util.Assert;
 import com.pandawork.web.spring.AbstractController;
@@ -101,7 +102,10 @@ public class DepartmentController extends AbstractController {
     public String queryDepartmentById(@PathVariable("id") int id,Model model) {
         try{
             Department department = departmentService.queryDepartmentById(id);
+            List<Member> list = Collections.emptyList();
+            list = memberService.queryMemberByDepartmentId(id);
             model.addAttribute("department",department);
+            model.addAttribute("memberList",list);
             return "departmentDescription";
         }catch (Exception e){
             LogClerk.errLog.error(e);

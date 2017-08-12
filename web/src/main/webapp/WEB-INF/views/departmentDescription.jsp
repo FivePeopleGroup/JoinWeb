@@ -15,14 +15,30 @@
 <center>
     <table border="1" style="text-align: center;font-size: 15px">
         <tr>
+            <th>序号</th>
             <th>部门名称</th>
             <th>部门简介</th>
+            <th>部门成员</th>
         </tr>
-            <tr>
-                <td>${department.departmentName}</td>
-                <td>${department.departmentDescription}</td>
-            </tr>
-    </table>
+        <tr>
+            <td>${Status.index+1}</td>
+            <td>${department.departmentName}</td>
+            <td>${department.departmentDescription}</td>
+            <td>
+                <c:forEach items="${memberList}" var="member" varStatus="Status">
+                    ${member.memberName}
+                </c:forEach>
+            </td>
+        </tr>
+    <%--</table>--%>
+    <%--<table border="1" style="text-align: center;font-size: 15px">--%>
+        <%--<tr>部门成员</tr>--%>
+        <%--<c:forEach items="${memberList}" var="member" varStatus="Status">--%>
+            <%--<tr>--%>
+                <%--<td>${member.memberName}</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
+    <%--</table>--%>
 </center>
 </body>
 </html>
