@@ -1,0 +1,42 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pandawork.mapper.ImageMapper">
+
+   <!--增加用户-->
+    <insert id="addImagez">
+        INSERT INTO `t_image`
+         (`id`, `name`, `date`, `visible`)
+        VALUES (#{image.id}, #{image.name},
+        #{image.date}, #{image.visible})
+    </insert>
+
+  <!--删除用户-->
+    <delete id="deleteImage">
+        DELETE FROM `t_image`
+        WHERE `id` = #{id}
+    </delete>
+
+    <!--修改用户-->
+    <update id="updateImage">
+        UPDATE `t_image`
+        SET `name` = #{image.name},
+        `visible` = #{image.visible}
+        WHERE `id` = #{image.id}
+    </update>
+
+    <!--列出全部用户-->
+    <select id="listAll" resultMap="pw.Image">
+        SELECT *
+        FROM `t_image`
+    </select>
+
+    <!--根据id查找-->
+    <select id="queryById" resultMap="pw.Image" >
+        SELECT *
+        FROM `t_image`
+        WHERE `id` = #{id}
+    </select>
+
+
+</mapper>
