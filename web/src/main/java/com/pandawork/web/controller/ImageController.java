@@ -76,6 +76,7 @@ public class ImageController extends AbstractController {
         }
         System.out.println("上传图片到：" + path + newFileName);
         model.addAttribute("fileUrl", path + newFileName);
+        model.addAttribute("msg","上传成功！");
         return "fileUpload";
 
     }

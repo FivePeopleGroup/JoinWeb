@@ -13,15 +13,21 @@ import javax.persistence.Table;
  */
 @Table(name = "t_image")
 @Entity
-public class Image extends AbstractEntity {
+public class File extends AbstractEntity {
 
     @Id
     public Integer id;
+
     //图片名称
+    @Column(name="name")
      private  String  name;
+
     //图片时间
+    @Column(name ="date")
     private String date;
-   //可见
+
+    //可见
+    @Column(name = "visible")
     private Integer visible;
 
     public Integer getVisible() {
@@ -59,7 +65,7 @@ public class Image extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "File{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", date='" + date + '\'' +

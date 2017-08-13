@@ -1,5 +1,5 @@
 package com.pandawork.service;
-import com.pandawork.common.entity.Image;
+import com.pandawork.common.entity.File;
 
 import java.util.List;
 
@@ -7,14 +7,14 @@ import java.util.List;
  * newframework
  * Created by TestUser on 2017/8/12.
  */
-public interface ImageService {
+public interface FileService {
 
     /**
      * 增加图像
-     * @param image
+     * @param file
      * @throws Exception
      */
-    public void addImage (Image image) throws Exception;
+    public void addImage (File file) throws Exception;
 
 
     /**
@@ -22,7 +22,7 @@ public interface ImageService {
      * @return
      * @throws Exception
      */
-    public List<Image> listAll() throws Exception;
+    public List<File> listAll() throws Exception;
     /**
      * 删除图像
      * @param id
@@ -36,7 +36,7 @@ public interface ImageService {
      * @param
      * @throws Exception
      */
-    public void updateImage(Image image) throws  Exception;
+    public void updateImage(File file) throws  Exception;
 
     /**
      * 通过id修改查找图片

@@ -1,7 +1,7 @@
 package com.pandawork.test;
 
-import com.pandawork.common.entity.Image;
-import com.pandawork.service.ImageService;
+import com.pandawork.common.entity.File;
+import com.pandawork.service.FileService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class ImageTest extends AbstractTestCase {
     @Autowired
-    ImageService imageService;
+    FileService fileService;
 
     /**
      * 增加
@@ -20,10 +20,10 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void addImageTest() throws Exception {
-    Image image = new Image();
-    image.setName("lala");
-    image.setVisible(0);
-    imageService.addImage(image);
+    File file = new File();
+    file.setName("lala");
+    file.setVisible(0);
+    fileService.addImage(file);
 }
 
     /**
@@ -32,7 +32,7 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void deleteTest()throws Exception{
-     imageService.deleteImage(8);
+     fileService.deleteImage(8);
 }
 
     /**
@@ -41,7 +41,7 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void listAllTest() throws Exception {
-    System.out.println(imageService.listAll());
+    System.out.println(fileService.listAll());
 }
 
     /**
@@ -50,11 +50,11 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void updateTest() throws Exception {
-    Image image = new Image();
-    image.setName("hhhh");
-    image.setVisible(1);
-    image.setId(7);
-    imageService.updateImage(image);
+    File file = new File();
+    file.setName("hhhh");
+    file.setVisible(1);
+    file.setId(7);
+    fileService.updateImage(file);
 }
 
     /**
@@ -63,6 +63,6 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void queryByIdTest() throws Exception {
-      imageService.queryById(7);
+      fileService.queryById(7);
 }
 }
