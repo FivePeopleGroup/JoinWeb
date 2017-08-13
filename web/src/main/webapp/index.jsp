@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 
 <!-- **********************************************************************************
 *Description: 登录页
@@ -12,7 +12,8 @@
 </head>
 <body>
 <%
-    response.sendRedirect("/news/list");
+    response.sendRedirect("/image/toFile");
 %>
 </body>
 </html>
+
