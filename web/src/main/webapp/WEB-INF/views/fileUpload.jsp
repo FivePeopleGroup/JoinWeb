@@ -24,8 +24,6 @@
         <input type="file" name="file">
         <input type="submit" value="上传">
     </form>
-    <h5>上传结果：</h5>
-    <img src="${fileUrl}">
 </center>
 </body>
 </html>
