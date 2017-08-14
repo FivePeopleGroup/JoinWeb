@@ -18,7 +18,7 @@
 <div class="nav">
     <ul class="level-1">
         <li class="firstli">
-            <a href="${website}news/list" class="firsta">首页</a>
+            <a href="${website}/news/zhuoyin" class="firsta">主页</a>
         </li>
     </ul>
 </div>
@@ -35,8 +35,9 @@
         <input type="password" name="password" id="password" class="public">
     </div>
     <div class="wrappub">
-        <input type="submit" name="submit" value="提交" id="sub" class="log">
+        <input type="submit" name="submit" value="登录" id="sub" class="log">
         <input type="reset" name="reset" value="重置" id="res" class="log">
+        <a  href="${website}user/register" ><input type="button" style="margin-left: 25px;" class="log" value="注册"></a>
     </div>
         <p align="center">${message}</p>
     </form>

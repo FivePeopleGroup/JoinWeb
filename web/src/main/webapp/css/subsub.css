@@ -1,0 +1,162 @@
+*{
+	padding: 0px;
+	margin:0px;
+}
+body{
+	background-image: url(../images/back.jpg);
+}
+.main{
+	width: 1200px;
+	margin-top: 100px;
+}
+.head{
+	height: 500px;
+	background-color: #66CCFF;
+	margin:0px 80px;
+	position: relative;
+	top:105px;
+}
+.bigpic{
+	height: 500px;
+	position: relative;
+	left:80px;
+	top: 50px;
+	background-image: url(../images/41.jpg);
+}
+.header{
+	font-size: 150px;
+	color: white;
+	position: absolute;
+	top:350px;
+	right:10%;
+}
+.center{
+	width: 500px;
+	height: 300px;
+	margin: 300px auto 100px;
+	text-align: center;
+}
+.centerfour{
+	width: 500px;
+	height: 300px;
+	margin: 150px auto;
+	text-align: center;
+}
+.circle{
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	border-radius: 50%;
+	margin: 0 auto;
+	font-size: 25px;
+	color: white;
+}
+.circle:hover{
+	opacity: 0.5;
+}
+.center p{
+	font-family: '楷体';
+	font-size: 15px;
+}
+.centerfour p{
+	font-family: '楷体';
+	font-size: 15px;
+	display: none;
+}
+.centerone{
+	height: 480px;
+	background-image: url(../images/43.jpg);
+	margin:0 80px;
+	text-align: center;
+	position: relative;
+}
+.centerthree{
+	height: 480px;
+	background-image: url(../images/50.jpg);
+	margin:0 80px;
+	text-align: center;
+	position: relative;
+}
+.smapic{
+	width: 50%;
+	height: 80%;
+	margin: 10px auto;
+	background-image: url(../images/47.jpg);
+	position: absolute;
+	z-index: 2;
+	top:10%;
+	left: 25%;
+	display: none;
+}
+.butter{
+	font-size: 200px;
+	position: absolute;
+	color: white;
+	z-index: 1;
+	top:30%;
+	left: 10%;
+	display: none;
+}
+.centertwo{
+	width: 1000px;
+	height: 600px;
+	margin:100px auto;
+}
+.lef{
+	width: 50%;
+	float: left;
+	text-align: center;
+	position: relative;
+	height: 400px;
+}
+.pi1{
+	width: 250px;
+	height: 400px;
+	background-image: url(../images/48.jpg);
+	position: absolute;
+	top:50%;
+	left: 25%;
+	display: none;
+}
+.pi2{
+	width: 250px;
+	height: 400px;
+	background-image: url(../images/49.jpg);
+	position: absolute;
+	left: 25%;
+	z-index: 2;
+	display: none;
+}
+.rig{
+	width: 50%;
+	float: right;
+	text-align: center;
+	position: relative;
+	height: 400px;
+}
+.bot{
+	font-size: 50px;
+}
+.pot{
+	font-size: 50px;
+	position: absolute;
+	top:120%;
+	left: 30%;
+}
+.blueone{
+	width: 300px;
+	height: 100px;
+	background-color: #66CCFF;
+	margin: 20%;
+	display: none;
+}
+.bluetwo{
+	width: 300px;
+	height: 100px;
+	background-color: #66CCFF;
+	margin: 20%;
+	position: absolute;
+	top:55%;
+	z-index: 1;
+	display: none;
+}

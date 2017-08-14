@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * 陈芳
+ * newframework
  * Created by TestUser on 2017/8/10.
  */
 @Controller
@@ -277,13 +277,47 @@ public class UserController extends AbstractController {
       try{
           User user  = userService.queryUserById(id);
           List<News> list = newsService.listAll();
+          List<com.pandawork.common.entity.File> fileList = fileService.listAll();
+          model.addAttribute("fileList",fileList);
           model.addAttribute("user",user);
           model.addAttribute("list",list);
-          return "main";
+          return "zhuoyinTwo";
       } catch (SSException e) {
           LogClerk.errLog.error(e);
           sendErrMsg(e.getMessage());
           return ADMIN_SYS_ERR_PAGE;
+      } catch (Exception e) {
+          LogClerk.errLog.error(e);
+          sendErrMsg(e.getMessage());
+          return ADMIN_SYS_ERR_PAGE;
       }
+    }
+
+
+    /**
+     * 跳转到主页
+     * @param model
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/ main/{id}" ,method = RequestMethod. GET)
+    public String main(Model model, @PathVariable("id") int id) {
+        try{
+            User user  = userService.queryUserById(id);
+            List<News> list = newsService.listAll();
+            List<com.pandawork.common.entity.File> fileList = fileService.listAll();
+            model.addAttribute("fileList",fileList);
+            model.addAttribute("user",user);
+            model.addAttribute("list",list);
+            return "main";
+        } catch (SSException e) {
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        } catch (Exception e) {
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
     }
 }

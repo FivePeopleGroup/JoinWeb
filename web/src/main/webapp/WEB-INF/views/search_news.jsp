@@ -28,7 +28,7 @@
     </c:forEach>
     <c:if test="${userId == '0'}">
     <tr align="center">
-        <td colspan="3" align="center"><a href="${website}news/list">返回首页</a></td>
+        <td colspan="3" align="center"><a href="${website}news/zhuoyin">返回首页</a></td>
     </tr>
     </c:if>
     <c:if test="${userId != '0'}">

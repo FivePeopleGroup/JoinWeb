@@ -106,7 +106,9 @@ public class NewsController extends AbstractController{
         }
     }
 
-    /**
+
+
+    /**editTwo
      * 修改新闻操作
      * @param news news
      * @param id id
@@ -152,6 +154,21 @@ public class NewsController extends AbstractController{
         }
     }
 
+    @RequestMapping(value = "/  selectTwo/{id}/{userId}",method = RequestMethod.GET)
+    public String   selectTwo(@PathVariable("id")int id,@PathVariable("userId")int userId, Model model){
+        try{
+            News news = new News();
+            news = newsService.queryById(id);
+            model.addAttribute("news",news);
+            model.addAttribute("userId",userId);
+            return "select_news_two";
+        }catch (SSException e){
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
     /**
      * 根据关键字查询新闻
      * @param keyWord keyWord
@@ -190,7 +207,7 @@ public class NewsController extends AbstractController{
                 List<News> newsList = newsService.listAll();
                 model.addAttribute("list",newsList);
                 model.addAttribute("user",user);
-                return "main";
+                return "zhuoyin";
             }
             List<News> newsList1 = Collections.emptyList();
             newsList1 = newsService.queryByKeyWord(keyWord);
@@ -200,7 +217,7 @@ public class NewsController extends AbstractController{
                 List<News> newsList = newsService.listAll();
                 model.addAttribute("list",newsList);
                 model.addAttribute("user",user);
-                return "main";
+                return "zhuoyin";
             }
             model.addAttribute("newsList",newsList1);
             model.addAttribute("UserId",id);

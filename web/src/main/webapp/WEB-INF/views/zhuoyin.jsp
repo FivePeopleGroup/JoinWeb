@@ -38,7 +38,9 @@
             <li class="level1">
                 <a href="javascript:;">团队文化</a>
             </li>
-
+            <li class="level1">
+                <a href="${website}user/login" class="firsta">注册||登录</a>
+            </li>
 
 
         </ul>
@@ -50,7 +52,7 @@
                 <li><a href="">关于我们</a></li>
             </ul>
             <ul class="level3">
-                <li><a href="">前端</a></li>
+                <li><a href="${website}/department/nose">前端</a></li>
                 <li><a href="">后端</a></li>
                 <li><a href="">产品部</a></li>
             </ul>
@@ -66,9 +68,11 @@
             </ul>
         </div>
         <div class="search">
-            <a href="${website}news/list" class="login">注册||登录</a>
-            <label>搜索　</label>
-            <input type="text" name="">
+            <p align="center">${message}</p>
+            <form action="${website}/news/searchMain/${0}" method="post">
+                <input type="text" name="keyWord"/>
+                <input type="submit" name="submit" value="搜索新闻" style="width: 65px" />
+            </form>
         </div>
     </nav>
     <div id="main"><!-- 轮播 -->
@@ -133,42 +137,11 @@
             <a href="" class="more-">更多></a>
             <c:forEach items="${newsList}" var="news" varStatus="status">
             <p class="link02">
-                <a href="" class="link03">${news.title}</a>
+                <a href="${website}news/select/${news.id}/${0}" class="link03">${news.title}</a>
                 <span class="date-">[${news.date}]</span>
             </p>
             </c:forEach>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
-            <%--<p class="link02">--%>
-                <%--<a href="" class="link03">前端招聘你来不来来不来来不来</a>--%>
-                <%--<span class="date-">[06.07]</span>--%>
-            <%--</p>--%>
+
         </div>
     </div>
     <div class="middle">
@@ -257,7 +230,7 @@
                 <div class="part4">
                     <img src="../img/part4.gif" class="picture4">
                     <a href="javascript:;" class="color4">
-                        <h1><产品部></h1>
+                        <h1><产品部> </h1>
                         <p>卓音产品部也是很厉害的哈哈哈巴拉巴拉巴拉巴拉巴拉巴拉</p>
                     </a>
                 </div>

@@ -147,16 +147,11 @@ public class DepartmentController extends AbstractController {
         }
     }
 
-//    @RequestMapping(value = "queryDescriptionByName/{departmentName}",method = RequestMethod.GET)
-//    public String queryDescriptionByName(@PathVariable("departmentName") String departmentName,Model model) {
-//        try{
-//            Department department = departmentService.queryDescriptionByName(departmentName);
-//            model.addAttribute("department",department);
-//            return "departmentDescription";
-//        }catch (Exception e){
-//            LogClerk.errLog.error(e);
-//            sendErrMsg(e.getMessage());
-//            return ADMIN_SYS_ERR_PAGE;
-//        }
-//    }
+    @RequestMapping(value = "nose",method = RequestMethod.GET)
+    public String nose(RedirectAttributes redirectAttributes) {
+
+        return "nose";
+
+    }
+
 }

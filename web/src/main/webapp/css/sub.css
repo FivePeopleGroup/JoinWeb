@@ -1,0 +1,120 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+/*头部*/
+body{
+	background-image: url(../images/back.jpg);
+}
+.header{
+	height: 200px;
+	background-image: url(../images/25.jpg);
+	text-align: center;
+	position: relative;
+}
+.texter{
+	width: 15%;
+	height: 40px;
+	position: absolute;
+	top:40%;
+	right: 10%;
+	font-size: 20px;
+	color: grey;
+}
+.font{
+	font-size: 50px;
+	font-weight: 500;
+	font-family: '楷体';
+	padding: 50px;
+}
+/*左页*/
+.left{
+	width: 20%;
+	height: 1000px;
+	background-color: #66CCFF;
+	display: block;
+	position: absolute;
+	text-align: center;
+	padding: 50px 0px;
+}
+.one{
+	color: white;
+	font-size: 30px;
+	font-weight: 500;
+}
+.but{
+	width: 100px;
+	height: 50px;
+	background-color: white;
+	margin: 50px;
+	font-size: 15px;
+}
+/*右页*/
+.right{
+	width: 80%;
+	height: 1000px;
+	display: block;
+	position: relative;
+	margin-left: 20%;
+}
+.rightone{
+	width: 80%;
+	height: 1000px;
+	position: relative;
+	margin-left: 20%;
+	display: none;
+}
+.righttwo{
+	width: 80%;
+	height: 1000px;
+	position: relative;
+	margin-left: 20%;
+	display: none;
+}
+.lef{
+	width: 20%;
+	height: 400px;
+	float: left;
+	margin: 5% 6%;
+	box-shadow: 10px 10px 10px #999999;
+	background-color: #66CCFF;
+	text-align: center;
+}
+.pic{
+	width: 100%;
+	height: 80%;
+	background-image: url(../images/16.jpg);
+}
+.pic1{
+	width: 100%;
+	height: 80%;
+	background-image: url(../images/18.jpg);
+}
+.pic2{
+	width: 100%;
+	height: 80%;
+	background-image: url(../images/24.jpg);
+}
+.lef:hover{
+	opacity: 0.5;
+}
+#tooltip{
+	position: absolute;
+	width: 200px;
+	height: 300px;
+	box-shadow: 10px 10px 10px #999999;
+	text-align: center;
+	/*background-color: #CCCCCC;*/
+}
+.fot{
+	font-size: 30px;
+	font-family: '楷体';
+}
+.pat{
+	font-size: 20px;
+	font-family: '楷体';
+}
+.h3{
+	font-size: 20px;
+	margin-top: 20px;
+}

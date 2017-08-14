@@ -15,11 +15,11 @@
 <body>
 
 
-<c:forEach items="${fileList}" begin="${fn:length(fileList)-4}" var="fileList" varStatus="status">
+ <c:forEach items="${fileList}" begin="${fn:length(fileList)-4}" var="fileList" varStatus="status">
     <img src="${fileList.name}" />
-</c:forEach>
+ </c:forEach>
 
-
+<a href="${website}user/main/${id}"><input type="button" value="返回后台管理页面"></a>
 
 </body>
 </html>

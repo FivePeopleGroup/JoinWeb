@@ -44,8 +44,9 @@ public class FileController extends AbstractController {
      * 跳到上传页面
      * @return
      */
-    @RequestMapping(value = "/toFile")
-    public String toFile(){
+    @RequestMapping(value = "/toFile/{id}")
+    public String toFile( RedirectAttributes redirectAttributes ,@PathVariable("id") int id){
+        redirectAttributes.addAttribute("id",id);
         return "fileUpload";
     }
 
@@ -59,8 +60,8 @@ public class FileController extends AbstractController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/file", method = RequestMethod.POST)
-   public String upload( @RequestParam("file")CommonsMultipartFile file, HttpServletRequest request, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+    @RequestMapping(value = "/file/{id}", method = RequestMethod.POST)
+   public String upload( @PathVariable("id") int id , @RequestParam("file")CommonsMultipartFile file, HttpServletRequest request, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
 
         //获得原始文件名
         String filename = file.getOriginalFilename();
@@ -90,6 +91,7 @@ public class FileController extends AbstractController {
                 e.printStackTrace();
             }
         }
+        redirectAttributes.addAttribute("id",id);
         model.addAttribute("msg","上传成功！");
         com.pandawork.common.entity.File file1 = new com.pandawork.common.entity.File();
         String name = "../../image/"+newFileName;
@@ -106,12 +108,12 @@ public class FileController extends AbstractController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/list" ,method = RequestMethod.GET)
-    public String listAll(Model model ,RedirectAttributes redirectAttributes) throws Exception {
+    @RequestMapping(value = "/list/{id}" ,method = RequestMethod.GET)
+    public String listAll(Model model ,RedirectAttributes redirectAttributes ,@PathVariable("id") int id) throws Exception {
     List<com.pandawork.common.entity.File> fileList = fileService.listAll();
     model.addAttribute("fileList",fileList);
-
-    return  "zhuoyin";
+        redirectAttributes.addAttribute("id",id);
+    return  "fileList";
 }
 
 }

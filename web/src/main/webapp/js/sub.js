@@ -1,0 +1,66 @@
+$(function(){
+	var x=250;
+	var y=250;
+	$(".pic").mouseover(function(e){
+		var tooltip="<div id='tooltip'><h1 class='fot'>作品名称</h1><p class='pat'>***</p><h1 class='fot'>制作人</h1><p class='pat'>***</p></div>";
+		$(".right").append(tooltip);
+		$("#tooltip").css({
+			"top":(e.pageY-x)+"px",
+			"left":(e.pageX-y)+"px",
+		}).show("fast");
+	}).mouseout(function(){
+		$("#tooltip").remove();
+	}).mousemove(function(e){
+		$("#tooltip").css({
+			"top":(e.pageY-y)+"px",
+			"left":(e.pageX-x)+"px"
+		});
+	});
+	$(".pic1").mouseover(function(e){
+		var tooltip="<div id='tooltip'><h1 class='fot'>作品名称</h1><p class='pat'>***</p><h1 class='fot'>制作人</h1><p class='pat'>***</p></div>";
+		$(".rightone").append(tooltip);
+		$("#tooltip").css({
+			"top":(e.pageY-x)+"px",
+			"left":(e.pageX-y)+"px",
+		}).show("fast");
+	}).mouseout(function(){
+		$("#tooltip").remove();
+	}).mousemove(function(e){
+		$("#tooltip").css({
+			"top":(e.pageY-y)+"px",
+			"left":(e.pageX-x)+"px"
+		});
+	});
+	$(".pic2").mouseover(function(e){
+		var tooltip="<div id='tooltip'><h1 class='fot'>作品名称</h1><p class='pat'>***</p><h1 class='fot'>制作人</h1><p class='pat'>***</p></div>";
+		$(".righttwo").append(tooltip);
+		$("#tooltip").css({
+			"top":(e.pageY-x)+"px",
+			"left":(e.pageX-y)+"px",
+		}).show("fast");
+	}).mouseout(function(){
+		$("#tooltip").remove();
+	}).mousemove(function(e){
+		$("#tooltip").css({
+			"top":(e.pageY-y)+"px",
+			"left":(e.pageX-x)+"px"
+		});
+	});
+})
+$(function(){
+	$("#next").click(function(){
+		$(".right").hide();
+		$(".righttwo").hide();
+		$(".rightone").show();
+	})
+	$("#prev").click(function(){
+		$(".right").show();
+		$(".rightone").hide();
+		$(".righttwo").hide();
+	})
+	$("#ui").click(function(){
+		$(".right").hide();
+		$(".rightone").hide();
+		$(".righttwo").show();
+	})
+})

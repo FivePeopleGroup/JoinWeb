@@ -27,7 +27,7 @@
             </tr>
             <c:if test="${userId=='0'}">
             <tr>
-                <td colspan="2" align="center"><a href="/news/list">返回新闻首页</a></td>
+                <td colspan="2" align="center"><a href="/news/zhuoyin">返回新闻首页</a></td>
             </tr>
             </c:if>
             <c:if test="${userId!='0'}">

@@ -19,7 +19,7 @@
         <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
         <c:if test="${user.status == '1' || user.status == '2'}">
             <td><a href="${website}/user/administration/${user.status}/${user.id}">用户管理</a></td>
-            <td> <a href="${website}/file/toFile"> 添加图片</a></td>
+            <td> <a href="${website}file/toFile/${user.id}"> 添加图片</a></td>
         </c:if>
         <td><a href="${website}/department/list/${user.status}/${user.id}">部门介绍</a></td>
         <td><a href="${website}/member/list/${user.status}/${user.id}">成员介绍</a></td>
@@ -45,7 +45,7 @@
     <c:forEach items="${list}"  var="news" varStatus="status">
         <tr>
             <td>${status.index+1}</td>
-            <td><a href="${website}news/select/${news.id}/${user.id}">${news.title}</a>
+            <td><a href="${website}news/selectTwo/${news.id}/${user.id}" >${news.title}</a>
             </td>
             <td>${news.date}</td>
             <c:if test="${user.status == '1'|| user.status == '2'}">
@@ -63,7 +63,10 @@
     </c:if>
     <tr>
         <td align="center"><a href="${website}user/update/${user.id}">修改个人信息</a></td>
-       <td colspan="2" align="center"><a style="margin: 5px" href="${website}news/list">退出登录</a></td>
+       <td colspan="3" align="center"><a style="margin: 5px" href="${website}news/zhuoyin">退出登录</a>
+
+       <a href="${website}user/qq/${user.id}">返回前台页面</a>
+       </td>
     </tr>
 </table>
 </center>

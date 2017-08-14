@@ -18,7 +18,7 @@
 <div class="nav">
     <ul class="level-1">
         <li class="firstli">
-            <a href="${website}/news/list" class="firsta">首页</a>
+            <a href="${website}/news/zhuoyin" class="firsta">主页</a>
         </li>
     </ul>
 </div>
