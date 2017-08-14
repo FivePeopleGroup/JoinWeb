@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Created by TestUser on 2017/8/12.
  */
 
-public class ImageTest extends AbstractTestCase {
+public class FileTest extends AbstractTestCase {
     @Autowired
     FileService fileService;
 
@@ -20,11 +20,11 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void addImageTest() throws Exception {
-    File file = new File();
-    file.setName("lala");
-    file.setVisible(0);
-    fileService.addImage(file);
-}
+        File file = new File();
+        file.setName("lala");
+        file.setVisible(0);
+        fileService.addImage(file);
+    }
 
     /**
      * 删除
@@ -32,8 +32,8 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void deleteTest()throws Exception{
-     fileService.deleteImage(8);
-}
+        fileService.deleteImage(8);
+    }
 
     /**
      * 全部
@@ -41,8 +41,8 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void listAllTest() throws Exception {
-    System.out.println(fileService.listAll());
-}
+        System.out.println(fileService.listAll());
+    }
 
     /**
      * 修改
@@ -50,12 +50,12 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void updateTest() throws Exception {
-    File file = new File();
-    file.setName("hhhh");
-    file.setVisible(1);
-    file.setId(7);
-    fileService.updateImage(file);
-}
+        File file = new File();
+        file.setName("hhhh");
+        file.setVisible(1);
+        file.setId(7);
+        fileService.updateImage(file);
+    }
 
     /**
      * 查找
@@ -63,6 +63,11 @@ public class ImageTest extends AbstractTestCase {
      */
     @Test
     public void queryByIdTest() throws Exception {
-      fileService.queryById(7);
-}
+        fileService.queryById(7);
+    }
+
+    @Test
+    public void  test()throws Exception{
+        System.out.println(fileService.countAll());
+    }
 }

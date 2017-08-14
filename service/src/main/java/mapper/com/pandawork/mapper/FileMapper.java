@@ -23,7 +23,7 @@ public interface FileMapper {
      * @param file
      * @throws Exception
      */
-    public void addImage (@Param("image") File file) throws Exception;
+    public void addImage (@Param("file") File file) throws Exception;
 
     /**
      * 删除图像
@@ -38,7 +38,7 @@ public interface FileMapper {
      * @param
      * @throws Exception
      */
-    public void updateImage(@Param("image") File file)throws  Exception;
+    public void updateImage(@Param("file") File file)throws  Exception;
 
     /**
      * 通过id修改查找图片
@@ -47,5 +47,13 @@ public interface FileMapper {
      */
 
     public void queryById(@Param("id") int id)throws Exception;
+
+
+    /**
+     * 查询所有记录数目
+     * @return
+     * @throws Exception
+     */
+    public Integer countAll() throws Exception;
 
 }

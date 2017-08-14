@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect("/image/toFile");
+    response.sendRedirect("/file/toFile");
 %>
 </body>
 </html>

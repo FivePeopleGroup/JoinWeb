@@ -48,4 +48,11 @@ public interface FileService {
 
 
     public void upload(String path)throws  Exception;
+
+    /**
+     * 查看记录条数
+     * @return
+     * @throws Exception
+     */
+    public Integer countAll() throws Exception;
 }
