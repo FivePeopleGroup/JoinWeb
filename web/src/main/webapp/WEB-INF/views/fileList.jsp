@@ -15,10 +15,11 @@
 <body>
 
 
-<c:forEach items="${fileList}" begin="${fn:length(fileList)-5}" var="fileList" varStatus="status">
-
+<c:forEach items="${fileList}" begin="${fn:length(fileList)-4}" var="fileList" varStatus="status">
     <img src="${fileList.name}" />
-
 </c:forEach>
+
+
+
 </body>
 </html>

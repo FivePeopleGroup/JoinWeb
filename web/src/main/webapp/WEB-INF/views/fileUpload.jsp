@@ -25,6 +25,7 @@
         <input type="file" name="file" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
         <input type="submit"  name="submit" class="btn" value="上传" />
         <a href="${website}file/list" >查看图片</a>
+        <a href="${website}/news/zhuoyin">返回首页</a>
     </form>
     ${msg}
 </center>

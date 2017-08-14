@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
@@ -37,7 +38,12 @@
             <li class="level1">
                 <a href="javascript:;">团队文化</a>
             </li>
+            <li class="level1">
+                <a href="${website}news/list">注册||登录</a>
+            </li>
+
         </ul>
+
         <div class="level2">
             <ul class="level3" id="ul1">
                 <li><a href="">环境</a></li>
@@ -67,10 +73,9 @@
     </nav>
     <div id="main"><!-- 轮播 -->
         <div id="carousel">
-            <img src="../img/99999.jpg">
-            <img src="../img/88888.jpg">
-            <img src="../img/77777.jpg">
-            <img src="../img/66666.jpg">
+            <c:forEach items="${fileList}" begin="${fn:length(fileList)-4}" var="fileList" varStatus="status">
+                <img src="${fileList.name}" />
+            </c:forEach>
         </div>
         <div id="buttons">
             <span class="on"></span>

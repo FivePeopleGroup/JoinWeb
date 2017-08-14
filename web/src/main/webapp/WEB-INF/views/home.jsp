@@ -19,7 +19,7 @@
 <div class="nav">
     <ul class="level-1">
         <li class="firstli">
-            <a href="${website}user/login" class="firsta">登陆</a>
+            <a href="${website}user/login" class="firsta">登录</a>
         </li>
         <li class="firstli">
             <a href="${website}user/register" class="firsta">注册</a>

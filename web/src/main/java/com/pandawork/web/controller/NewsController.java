@@ -245,8 +245,14 @@ public class NewsController extends AbstractController{
             List<News> newsList = Collections.emptyList();
             newsList = newsService.listAll();
             model.addAttribute("newsList",newsList);
+            List<com.pandawork.common.entity.File> fileList = fileService.listAll();
+            model.addAttribute("fileList",fileList);
             return "zhuoyin";
         }catch (SSException e){
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        } catch (Exception e) {
             LogClerk.errLog.error(e);
             sendErrMsg(e.getMessage());
             return ADMIN_SYS_ERR_PAGE;

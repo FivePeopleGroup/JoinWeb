@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-    response.sendRedirect("/file/toFile");
+    response.sendRedirect("/news/zhuoyin");
 %>
 </body>
 </html>

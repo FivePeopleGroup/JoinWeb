@@ -69,7 +69,7 @@ public class FileController extends AbstractController {
         String newFileName =  UUID.randomUUID()+ filename;
 //       UUID.randomUUID()局唯一标识符,是指在一台机器上生成的数字，它保证对在同一时空中的所有机器都是唯一的，
         ServletContext sc = request.getSession().getServletContext();
-        String path = sc.getRealPath("img")+"/";
+        String path = sc.getRealPath("image")+"/";
         File f = new File(path);
         if(!f.exists()){
             f.mkdirs();
@@ -92,7 +92,7 @@ public class FileController extends AbstractController {
         }
         model.addAttribute("msg","上传成功！");
         com.pandawork.common.entity.File file1 = new com.pandawork.common.entity.File();
-        String name = "../../img/"+newFileName;
+        String name = "../../image/"+newFileName;
         file1.setName(name);
         file1.setVisible(0);
         fileService.addImage(file1);
@@ -111,7 +111,7 @@ public class FileController extends AbstractController {
     List<com.pandawork.common.entity.File> fileList = fileService.listAll();
     model.addAttribute("fileList",fileList);
 
-    return  "fileList";
+    return  "zhuoyin";
 }
 
 }

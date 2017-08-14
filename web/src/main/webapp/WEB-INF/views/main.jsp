@@ -19,6 +19,7 @@
         <%--在用户登录成功之后的方法中，将当前登录的用户传到主页  “user”--%>
         <c:if test="${user.status == '1' || user.status == '2'}">
             <td><a href="${website}/user/administration/${user.status}/${user.id}">用户管理</a></td>
+            <td> <a href="${website}/file/toFile"> 添加图片</a></td>
         </c:if>
         <td><a href="${website}/department/list/${user.status}/${user.id}">部门介绍</a></td>
         <td><a href="${website}/member/list/${user.status}/${user.id}">成员介绍</a></td>
