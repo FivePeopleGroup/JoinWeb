@@ -38,9 +38,8 @@
             <li class="level1">
                 <a href="javascript:;">团队文化</a>
             </li>
-            <li class="level1">
-                <a href="${website}news/list">注册||登录</a>
-            </li>
+
+
 
         </ul>
 
@@ -67,6 +66,7 @@
             </ul>
         </div>
         <div class="search">
+            <a href="${website}news/list" class="login">注册||登录</a>
             <label>搜索　</label>
             <input type="text" name="">
         </div>
