@@ -1,0 +1,162 @@
+.head-img img{
+	width: 100%;
+	height: 500px;
+}
+.nav{
+	background:rgba(199,198,195,0);
+	border-bottom: 1px solid white;
+	position: fixed;
+	width: 100%;
+	height: 103px;
+	z-index: 100; 
+}
+.title{
+	display: inline-block;
+	font-size: 30px;
+	font-weight: 500;
+	vertical-align: 90%;
+	color: black;
+	text-shadow:2px 2px 6px white;
+}
+.fixednav{
+	color:white;
+	background-color: white;
+}
+.lm{
+	background-color: white;
+	border-bottom: gray 1px solid;
+}
+.sign{
+	margin-left: 50px;
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+}
+.menu{
+	display: inline-block;
+	margin-left: 150px;
+	overflow: hidden;
+	list-style-type: none;
+	width: 800px;
+	height: 100px;
+}
+.level1{
+	margin-left: 45px;
+	margin-top: 40px;
+	float: left;
+	text-align: center;
+	width: 100px;
+}
+.level1 a{
+	display: block;
+	vertical-align: center;
+	text-align: center;
+	font-size: 20px;
+	color:black;
+	text-shadow:2px 2px 6px white;
+	height: 35px;
+	width: 100px;
+}
+.level1 a:hover{
+	text-decoration:none;
+}
+.level1 a.current{font-size: 20px;}
+.level2 ul{
+	overflow:hidden;
+}
+/*level2*/
+.level2{display:none;}
+.level2{
+	width: 100%;
+	height: 200px;
+	background:white;
+}
+.level3{
+	float: left;
+	margin-left: 70px;
+}
+#ul1{
+	margin-left: 517px;
+}
+.level2 .level3 li a{
+	display: block;
+	overflow: hidden;
+	line-height: 35px;
+	text-align: center;
+	font-size: 20px;
+	color: black;
+	height: 35px;
+}
+.level3 li a:hover{
+	color: #f54b4d;
+	text-decoration: none;
+	font-size: 20px;
+} 
+.search{
+	position: absolute;
+	top: 40px;
+	right: 70px;
+	display: inline-block;
+	z-index: 3;
+}
+.search p{
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 350;
+	text-shadow:2px 2px 6px white;
+}
+.search input{
+	border:0px;
+	box-shadow: 0px 0px 10px #0e0fd4;
+	height: 30px;
+	width: 200px;
+}
+
+
+
+figure{
+	position: relative;
+	width: 33.33%;
+	overflow: hidden;
+	height: 300px;
+	float: left;
+}
+figcaption{
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+}
+figure img{
+	opacity: 0.8;
+	transition: all 0.35s;
+}
+figure figcaption p{
+	transition: all 0.35s;
+}
+.text1{
+	background-color: #2f0000;
+}
+.text1 figcaption p{
+	background-color: white;
+	color: black;
+	margin: 5px;
+	text-align: center;
+	transform: translate(-120px,0);
+}
+.text1:hover figcaption p{
+	transform: translate(0,0);
+}
+.text1 figcaption p:nth-of-type(1){
+	transition-delay: 0.05s
+}
+.text1 figcaption p:nth-of-type(2){
+	transition-delay: 0.1s
+}
+.text1 figcaption p:nth-of-type(3){
+	transition-delay: 0.15s
+}
+.text1:hover img{
+	transform: translate(-50px,0);
+	opacity: 0.5;
+}

@@ -233,4 +233,24 @@ public class NewsController extends AbstractController{
         }
     }
 
+    /**
+     *
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/zhuoyin",method = RequestMethod.GET)
+    public String testList(Model model,HttpServletRequest request){
+        try{
+            List<News> newsList = Collections.emptyList();
+            newsList = newsService.listAll();
+            model.addAttribute("newsList",newsList);
+            return "zhuoyin";
+        }catch (SSException e){
+            LogClerk.errLog.error(e);
+            sendErrMsg(e.getMessage());
+            return ADMIN_SYS_ERR_PAGE;
+        }
+    }
+
 }
