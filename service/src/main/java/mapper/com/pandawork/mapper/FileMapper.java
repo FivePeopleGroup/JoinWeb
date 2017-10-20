@@ -14,7 +14,7 @@ public interface FileMapper {
     /**
      * 查看全部图像
      * @return
-     * @throws Exception
+     * @throws Exception   ...
      */
    public List<File> listAll() throws Exception;
 
@@ -32,7 +32,6 @@ public interface FileMapper {
      */
     public boolean deleteImage(@Param("id") int id)throws Exception;
 
-
     /**
      * 修改图像
      * @param
@@ -41,13 +40,12 @@ public interface FileMapper {
     public void updateImage(@Param("file") File file)throws  Exception;
 
     /**
-     * 通过id修改查找图片
+     * 通过id查找图片
      * @param id
      * @throws Exception
      */
 
     public void queryById(@Param("id") int id)throws Exception;
-
 
     /**
      * 查询所有记录数目
